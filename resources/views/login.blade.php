@@ -34,7 +34,7 @@
             <div class="block py-3">
                 <p >Don't have an account?</p>
                 <div class="flex ">
-                    <p>Click Here to:</p>
+                    <p>Click Here tooooo</p>
                     <a href="/register" class="underline pl-1">Register!</a>
                 </div>
             </div>
