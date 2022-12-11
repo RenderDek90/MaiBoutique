@@ -27,14 +27,14 @@
         </style> --}}
     </head>
     <body class="overflow-hidden">
-        @include('loading-screen/loadingHome')
+        {{-- @include('loading-screen/loadingHome') --}}
         <nav class="shadow-md">
             <ul class="flex items-center justify-between px-14 py-4">
                 <li><a href="#" class="text-gray-900 text-xl underline">MAIBOUTIQUE</a></li>
                 <li><a href="/sign-in" class="text-gray-900">Sign In</a></li>
             </ul>
         </nav>
-        <section class="bg-cover bg-[url('/storage/images/boutique-home2.jpg')]">
+        <section class="bg-cover bg-[url('/storage/images/clothingStore.jpg')]">
             <div class="bg-gray-900 bg-opacity-70 h-screen">
                 <div class="h-screen grid content-center opacity-100 leading-10 text-white text-center">
                     <p class="text-4xl">Welcome to <u>MaiBoutique</u></p>
