@@ -26,7 +26,7 @@
                 <label for="password" class="error-msg">Must be filled with 5-20 characters</label>
                 <div class="items-end">
                     <input type="checkbox" name="remember" id="remember">
-                    <label for="remember_name">Remember me!!!</label>
+                    <label for="remember_name">Remember me!!</label>
                 </div>
                 </div>
                 <button class="border-button p-2 m-2 rounded w-[250px]" type="submit">Sign In</button>
