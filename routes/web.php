@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +29,10 @@ Route::get('/sign-in' , function (){
 return view('login');
 });
 
-Route::get('/register' , function (){
-    return view('register');
-    });
+Route::get('/register' ,[UserController::class, 'view'] );
+Route::post('/saveRegister' ,[UserController::class, 'saveRegister'] );
+
+// Route::get('/register', [])
 
 Route::get('/home', [ItemController::class, 'viewItems']);
 

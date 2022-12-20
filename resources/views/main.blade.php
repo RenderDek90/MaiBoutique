@@ -30,7 +30,7 @@
         {{-- @include('loading-screen/loadingHome') --}}
         <nav class="shadow-md">
             <ul class="flex items-center justify-between px-14 py-4">
-                <li><a href="#" class="text-gray-900 text-xl underline">MAIBOUTIQUE</a></li>
+                <li><a href="#" class="text-gray-900 text-xl underline">MaiBoutique</a></li>
                 <li><a href="/sign-in" class="text-gray-900">Sign In</a></li>
             </ul>
         </nav>
@@ -39,7 +39,7 @@
                 <div class="h-screen grid content-center opacity-100 leading-10 text-white text-center">
                     <p class="text-4xl">Welcome to <u>MaiBoutique</u></p>
                     <p>Online Boutique that Provides You with Various Clothes to Suit Your Various Activities</p>
-                    <div class="content-center"><button class="bg-blue-500 hover:bg-blue-700 rounded w-36">SIGN UP NOW</button></div>
+                    <div class="content-center"><a href="/register" class="py-2 px-4 bg-blue-500 hover:bg-blue-700 rounded w-36">SIGN UP NOW</a></div>
                 </div>
             </div>
         </section>
