@@ -13,7 +13,7 @@
         <div class="grid bg-slate-200 px-2 py-5 rounded-2xl shadow-md shadow-white">
             <p class="text-center font-medium py-2 text-gray-900">Register MaiBoutique</p>
 
-            <form action="/register" method="POST" class="w-[400px] bg-slate-100 flex flex-col items-center gap-y-3 rounded-2xl">
+            <form action="/register" method="POST" enctype="multipart/form-data" class="w-[400px] bg-slate-100 flex flex-col items-center gap-y-3 rounded-2xl">
                 @csrf
                 @if ($errors->has('email'))
                 <span class="text-red-800">{{$errors->first('email')}}</span>
