@@ -11,20 +11,21 @@
             <div class="h-5 w-5 rounded-full bg-white"></div><div class="h-5 w-5 rounded-full bg-white"></div>
         </div>
         <div class="grid bg-slate-200 px-2 py-5 rounded-2xl shadow-md shadow-white">
-            <p class="text-center font-medium py-2 text-gray-900">Login MaiBoutique</p>
+            <p class="text-center font-medium py-2 text-gray-900">Register MaiBoutique</p>
 
-            <form action="/saveRegister" method="POST" class="bg-slate-100 flex flex-col items-center gap-y-3 rounded-2xl">
+            <form action="/saveRegister" method="POST" class="w-[400px] bg-slate-100 flex flex-col items-center gap-y-3 rounded-2xl">
                 @csrf
-                <input class="p-2 m-2 rounded border-form" type="text" name="email" placeholder="Email" required>
-                <input class="p-2 m-2 rounded border-form" type="text" name="username" placeholder="Username" required>
-                <input class="p-2 m-2 rounded border-form" type="text" name="phone_number" placeholder="Phone Number" required>
-                <input class="p-2 m-2 rounded border-form" type="textarea" name="address" placeholder="Address" required>
-                <input type="password" class="p-2 m-2 rounded border-form" name="password" id="" required placeholder="Password">
+                <input class="p-2 m-2 rounded border-form w-[400px]" type="text" name="email" placeholder="Email" required>
+                <input class="p-2 m-2 rounded border-form w-[400px]" type="text" name="username" placeholder="Username" required>
+                <input class="p-2 m-2 rounded border-form w-[400px]" type="text" name="phone_number" placeholder="Phone Number" required>
+                <input class="p-2 m-2 rounded border-form w-[400px]" type="textarea" name="address" placeholder="Address" required>
+                <input type="password" class="p-2 m-2 rounded border-form w-[400px]" name="password" id="" required placeholder="Password">
+                {{-- <input type="password" class="p-2 m-2 rounded border-form" name="confirm_password" id="" required placeholder="Confirm Password"> --}}
                 <input class="border-button p-2 m-2 rounded" type="submit" value="Register">
             </form>
             <div class="flex py-3">
                 <p >Already have an account.</p>
-                <a href="/login" class="underline pl-1">Login!</a>
+                <a href="/sign-in" class="underline pl-1">Login!</a>
             </div>
         </div>
     </div>

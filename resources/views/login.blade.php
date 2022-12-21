@@ -16,7 +16,7 @@
         <div class="grid bg-slate-200 px-2 py-5 rounded-2xl shadow-md shadow-white">
             <p class="text-center font-medium p-4 text-gray-900 text-3xl">Sign In</p>
             <form action="" method="post" class="bg-slate-100 flex flex-col items-center gap-y-3 rounded-2xl p-2">
-                <div class="form-">
+                <div class="">
                     <label for="email" class="">Email</label>
                     <input class="p-2 m-2 rounded border-form w-[250px]" type="text" name="username-email" placeholder="Email or Username" required>
                     <label for="email" class="error-msg">Must be filled and email validation</label>
