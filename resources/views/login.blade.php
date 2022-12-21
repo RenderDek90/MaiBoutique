@@ -6,13 +6,13 @@
     <div class="bg-[url('https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-135.jpg?w=740&t=st=1669837026~exp=1669837626~hmac=6886d285ea33c5e19667cccdd53180130f1728fbeebea02d173bb457792c0436')] h-screen bg-cover bg-no-repeat">
     </div>
     <div class="bg-gray-900 flex flex-column items-center justify-center">
-        <div class="rotate-90 absolute top-[15%] right-[32%]">
+        {{-- <div class="rotate-90 absolute top-[15%] right-[32%]">
             <div class="grid">
                 <div class="h-5 w-5 rounded-full bg-[rgb(17,24,39)] opacity-25"></div>
                 <div class="h-5 w-5 rounded-full bg-[rgb(17,24,39)] opacity-25"></div>
                 <div class="h-5 w-5 rounded-full bg-[rgb(17,24,39)] opacity-25"></div>
             </div>
-        </div>
+        </div> --}}
         <div class="grid bg-slate-200 px-2 py-5 rounded-2xl shadow-md shadow-white">
             <p class="text-center font-medium p-4 text-gray-900 text-3xl">Sign In</p>
 
