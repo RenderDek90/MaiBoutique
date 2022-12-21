@@ -37,9 +37,8 @@ Route::get('/getData', [UserController::class, 'getData']);
 
 Route::get('/home', [ItemController::class, 'viewItems']);
 
-Route::get('/addItems', function(){
-    return view('/addItem');
-});
+Route::get('/addItems', [ItemController::class, 'addItem']);
+Route::post('/addItems', [ItemController::class, 'insertItem']);
 
 Route::get('/profile/{id}', [UserController::class, 'viewProfile']);
 

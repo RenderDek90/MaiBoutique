@@ -21,6 +21,7 @@
                 {{$message}}
             </div>
             @endif
+
             <form action="/getData" method="get" class="bg-slate-100 flex flex-col gap-y-3 rounded-2xl p-2">
 
                 @csrf
