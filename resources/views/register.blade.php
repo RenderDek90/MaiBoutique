@@ -13,14 +13,33 @@
         <div class="grid bg-slate-200 px-2 py-5 rounded-2xl shadow-md shadow-white">
             <p class="text-center font-medium py-2 text-gray-900">Register MaiBoutique</p>
 
-            <form action="/saveRegister" method="POST" class="w-[400px] bg-slate-100 flex flex-col items-center gap-y-3 rounded-2xl">
+            <form action="/register" method="POST" class="w-[400px] bg-slate-100 flex flex-col items-center gap-y-3 rounded-2xl">
                 @csrf
-                <input class="p-2 m-2 rounded border-form w-[400px]" type="text" name="email" placeholder="Email" required>
-                <input class="p-2 m-2 rounded border-form w-[400px]" type="text" name="username" placeholder="Username" required>
-                <input class="p-2 m-2 rounded border-form w-[400px]" type="text" name="phone_number" placeholder="Phone Number" required>
-                <input class="p-2 m-2 rounded border-form w-[400px]" type="textarea" name="address" placeholder="Address" required>
-                <input type="password" class="p-2 m-2 rounded border-form w-[400px]" name="password" id="" required placeholder="Password">
-                {{-- <input type="password" class="p-2 m-2 rounded border-form" name="confirm_password" id="" required placeholder="Confirm Password"> --}}
+                @if ($errors->has('email'))
+                <span class="text-red-800">{{$errors->first('email')}}</span>
+                @endif
+                <input class="p-2 m-2 rounded border-form w-[400px]" type="text" name="email" placeholder="Email" >
+
+                @if ($errors->has('username'))
+                <span class="text-red-800">{{$errors->first('username')}}</span>
+                @endif
+                <input class="p-2 m-2 rounded border-form w-[400px]" type="text" name="username" placeholder="Username" >
+
+                @if ($errors->has('phone_number'))
+                <span class="text-red-800">{{$errors->first('phone_number')}}</span>
+                @endif
+                <input class="p-2 m-2 rounded border-form w-[400px]" type="text" name="phone_number" placeholder="Phone Number" >
+
+                @if ($errors->has('address'))
+                <span class="text-red-800">{{$errors->first('address')}}</span>
+                @endif
+                <input class="p-2 m-2 rounded border-form w-[400px]" type="textarea" name="address" placeholder="Address" >
+
+                @if ($errors->has('password'))
+                <span class="text-red-800">{{$errors->first('password')}}</span>
+                @endif
+                <input type="password" class="p-2 m-2 rounded border-form w-[400px]" name="password" placeholder="Password" >
+
                 <input class="border-button p-2 m-2 rounded" type="submit" value="Register">
             </form>
             <div class="flex py-3">

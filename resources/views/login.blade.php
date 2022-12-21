@@ -15,19 +15,30 @@
         </div>
         <div class="grid bg-slate-200 px-2 py-5 rounded-2xl shadow-md shadow-white">
             <p class="text-center font-medium p-4 text-gray-900 text-3xl">Sign In</p>
-            <form action="" method="post" class="bg-slate-100 flex flex-col items-center gap-y-3 rounded-2xl p-2">
-                <div class="">
-                    <label for="email" class="">Email</label>
-                    <input class="p-2 m-2 rounded border-form w-[250px]" type="text" name="username-email" placeholder="Email or Username" required>
-                    <label for="email" class="error-msg">Must be filled and email validation</label>
 
-                <label for="email" class="">Passwords</label>
-                <input type="password" class="p-2 m-2 rounded border-form w-[250px]" name="pass" id="" required placeholder="Password">
-                <label for="password" class="error-msg">Must be filled with 5-20 characters</label>
+            @if ($message = Session::get('success'))
+            <div>
+                {{$message}}
+            </div>
+            @endif
+            <form action="/getData" method="get" class="bg-slate-100 flex flex-col gap-y-3 rounded-2xl p-2">
+
+                @csrf
+                @if ($errors->has('email'))
+                <span class="text-red-800">{{$errors->first('email')}}</span>
+                @endif
+                <label for="email" class="px-2">Email</label>
+                <input class="p-2 m-2 rounded border-form w-[250px]" type="text" name="username-email" placeholder="Email or Username">
+
+                @if ($errors->has('password'))
+                <span class="text-red-800">{{$errors->first('password')}}</span>
+                @endif
+                <label for="email" class="px-2">Passwords</label>
+                    <input type="password" class="p-2 m-2 rounded border-form w-[250px]" name="pass" placeholder="Password">
+
                 <div class="items-end">
                     <input type="checkbox" name="remember" id="remember">
                     <label for="remember_name">Remember me!</label>
-                </div>
                 </div>
                 <button class="border-button p-2 m-2 rounded w-[250px]" type="submit">Sign In</button>
             </form>

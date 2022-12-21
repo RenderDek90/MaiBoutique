@@ -30,7 +30,8 @@ return view('login');
 });
 
 Route::get('/register' ,[UserController::class, 'view'] );
-Route::post('/saveRegister' ,[UserController::class, 'saveRegister'] );
+Route::post('/register' ,[UserController::class, 'saveRegister'] );
+Route::get('/getData', [UserController::class, 'getData']);
 
 // Route::get('/register', [])
 
