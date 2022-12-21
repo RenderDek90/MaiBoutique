@@ -34,7 +34,7 @@ class ItemController extends Controller
         ]);
 
         $extension = $req->image->getClientOriginalExtension();
-        $fileName = $req->name . '.' . $extension;
+    $fileName = $req->name . '.' . $extension;
         $req->image->move('storage/images', $fileName);
 
         $item = new Item();
