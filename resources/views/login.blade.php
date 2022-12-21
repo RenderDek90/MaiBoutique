@@ -22,7 +22,7 @@
             </div>
             @endif
 
-            <form action="/getData" method="get" class="bg-slate-100 flex flex-col gap-y-3 rounded-2xl p-2">
+            <form action="/getData" method="post" class="bg-slate-100 flex flex-col gap-y-3 rounded-2xl p-2">
 
                 @csrf
                 @if ($errors->has('email'))
@@ -36,12 +36,17 @@
                 @endif
                 <label for="email" class="px-2">Passwords</label>
                     <input type="password" class="p-2 m-2 rounded border-form w-[250px]" name="pass" placeholder="Password">
-
-                <div class="items-end">
+                @if (Route::has('password.request'))
+                <a class="btn btn-link" href="{{ route('password.request') }}">
+                    Forgot password?
+                </a>
+            <div class="items-end">
                     <input type="checkbox" name="remember" id="remember">
                     <label for="remember_name">Remember me!</label>
                 </div>
-                <button class="border-button p-2 m-2 rounded w-[250px]" type="submit">Sign In</button>
+                <button class="border-button p-2 m-2 rounded w-[250px]" type="submit">Login</button>
+
+            @endif
             </form>
             <div class="block py-3">
                 <p >Don't have an account?</p>

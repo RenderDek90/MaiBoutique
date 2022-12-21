@@ -5,6 +5,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,7 @@ Route::get('/getData', [UserController::class, 'getData']);
 
 // Route::get('/register', [])
 
-Route::get('/home', [ItemController::class, 'viewItems']);
+Route::get('/home2', [ItemController::class, 'viewItems']);
 
 Route::get('/addItems', [ItemController::class, 'addItem']);
 Route::post('/addItems', [ItemController::class, 'insertItem']);
@@ -51,3 +52,6 @@ Route::get('/item/{id}', [ItemController::class, 'viewItemDetail']);
 Route::get('/transaction-history', [CartController::class, 'viewTransactionHistory']);
 
 Route::get('/home/admin', [ItemController::class, 'viewItems']);
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
