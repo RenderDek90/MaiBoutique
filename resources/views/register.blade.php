@@ -18,27 +18,27 @@
                 @if ($errors->has('email'))
                 <span class="text-red-800">{{$errors->first('email')}}</span>
                 @endif
-                <input class="p-2 m-2 rounded border-form w-[400px]" type="text" name="email" placeholder="Email" >
+                <input class="p-2 m-2 rounded border-form w-[400px]" type="text" name="email" id="email" placeholder="Email">
 
                 @if ($errors->has('username'))
                 <span class="text-red-800">{{$errors->first('username')}}</span>
                 @endif
-                <input class="p-2 m-2 rounded border-form w-[400px]" type="text" name="username" placeholder="Username" >
+                <input class="p-2 m-2 rounded border-form w-[400px]" type="text" name="username" id="username" placeholder="Username">
 
                 @if ($errors->has('phone_number'))
                 <span class="text-red-800">{{$errors->first('phone_number')}}</span>
                 @endif
-                <input class="p-2 m-2 rounded border-form w-[400px]" type="text" name="phone_number" placeholder="Phone Number" >
+                <input class="p-2 m-2 rounded border-form w-[400px]" type="text" name="phone_number" id="phone_number" placeholder="Phone Number">
 
                 @if ($errors->has('address'))
                 <span class="text-red-800">{{$errors->first('address')}}</span>
                 @endif
-                <input class="p-2 m-2 rounded border-form w-[400px]" type="textarea" name="address" placeholder="Address" >
+                <input class="p-2 m-2 rounded border-form w-[400px]" type="textarea" name="address" id="address" placeholder="Address">
 
                 @if ($errors->has('password'))
                 <span class="text-red-800">{{$errors->first('password')}}</span>
                 @endif
-                <input type="password" class="p-2 m-2 rounded border-form w-[400px]" name="password" placeholder="Password" >
+                <input class="p-2 m-2 rounded border-form w-[400px]" type="password" name="password" id="password" placeholder="Password">
 
                 <input class="border-button p-2 m-2 rounded" type="submit" value="Register">
             </form>

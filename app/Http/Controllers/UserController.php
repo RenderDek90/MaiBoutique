@@ -21,29 +21,23 @@ class UserController extends Controller
     public function saveRegister(Request $req){
 
         $rules = $req->validate([
-            'username' => 'required|min:1|max:255|string',
-            'email' => 'required|email',
-            'address' => 'required|min:5|max:255|string',
-            'phone_number' => 'required|numeric',
+            'username' => 'required|min:3|max:50',
+            'email' => 'required|email|unique:users,email',
+            'address' => 'required|min:5|max:255',
+            'phone_number' => 'required|min:10|max:14',
             'password' => 'required|min:6'
         ]);
 
-        // $validator = Validator::make($req->all(), $rules);
+        $user = new User();
+        $user->username = $rules['username'];
+        $user->email = $rules['email'];
+        $user->address = $rules['address'];
+        $user->phone_number = $rules['phone_number'];
+        $user->password = $rules['password'];
+        $user->role = 'Member';
+        $user->save();
 
-        // if ($validator->fails()){
-        //     return back()->withErrors($validator);
-        // }
-
-        $data = $req->all();
-        User::insert([
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'phone_number' => $data['phone_number'],
-            'address' => $data['address'],
-            'password' => Hash::make($data['password'])
-        ]);
-
-        return redirect('/sign-in')->with('success', 'Registration Complete!!');
+        return redirect('/sign-in')->with('success', 'Successfully Registered!');
     }
 
     public function getData(Request $req){
