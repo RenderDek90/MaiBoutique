@@ -12,4 +12,9 @@ class Cart extends Model
     public function cart_details() {
         return $this->hasMany(CartDetail::class);
     }
+
+    //gatau perlu apa engga
+    public function cart_items(){
+        return $this->hasMany(Item::class);
+    }
 }

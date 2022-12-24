@@ -51,4 +51,11 @@ class ItemController extends Controller
     public function addItem(){
         return view('addItem');
     }
+
+    public function searchItem($id){
+
+        $search = Item::find($id);
+
+        return view('search', ['item' => $search]);
+    }
 }

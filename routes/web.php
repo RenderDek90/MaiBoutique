@@ -32,11 +32,22 @@ return view('login');
 
 Route::get('/register' ,[UserController::class, 'view'] );
 Route::post('/register' ,[UserController::class, 'saveRegister'] );
-Route::get('/getData', [UserController::class, 'getData']);
+Route::post('/getData', [UserController::class, 'getData']);
 
 // Route::get('/register', [])
 
-Route::get('/home2', [ItemController::class, 'viewItems']);
+Route::get('/home', [ItemController::class, 'viewItems']);
+
+
+Route::get('/myCart', [UserController::class, 'viewCart']);
+Route::get('/checkout', function(){
+    //view checkout ("Kayak Done Checkout atau gimana")
+});
+
+Route::get('/edit_cart/id', function (){
+    // harusnya ada Id, untuk tau Item yang mana untuk di Update
+    return view('edit_cart');
+});
 
 Route::get('/addItems', [ItemController::class, 'addItem']);
 Route::post('/addItems', [ItemController::class, 'insertItem']);
@@ -52,6 +63,3 @@ Route::get('/item/{id}', [ItemController::class, 'viewItemDetail']);
 Route::get('/transaction-history', [CartController::class, 'viewTransactionHistory']);
 
 Route::get('/home/admin', [ItemController::class, 'viewItems']);
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

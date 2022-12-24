@@ -20,11 +20,6 @@
         {{-- Tailwind --}}
         <script src="https://cdn.tailwindcss.com"></script>
 
-        {{-- <style>
-            body {
-                font-family: 'Nunito', sans-serif;
-            }
-        </style> --}}
     </head>
     <body class="overflow-none">
         {{-- @include('loading-screen/loadingHome') --}}

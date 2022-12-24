@@ -29,24 +29,26 @@
                 <span class="text-red-800">{{$errors->first('email')}}</span>
                 @endif
                 <label for="email" class="px-2">Email</label>
-                <input class="p-2 m-2 rounded border-form w-[250px]" type="text" name="username-email" placeholder="Email or Username">
+                <input class="p-2 m-2 rounded border-form w-[250px]" type="text" name="email" placeholder="Email or Username">
 
                 @if ($errors->has('password'))
                 <span class="text-red-800">{{$errors->first('password')}}</span>
                 @endif
                 <label for="email" class="px-2">Passwords</label>
-                    <input type="password" class="p-2 m-2 rounded border-form w-[250px]" name="pass" placeholder="Password">
+                    <input type="password" class="p-2 m-2 rounded border-form w-[250px]" name="password" placeholder="Password">
+
+                {{-- Password Reset gatau harus gini atau gimana --}}
                 @if (Route::has('password.request'))
                 <a class="btn btn-link" href="{{ route('password.request') }}">
                     Forgot password?
                 </a>
+            @endif
             <div class="items-end">
                     <input type="checkbox" name="remember" id="remember">
                     <label for="remember_name">Remember me!</label>
                 </div>
                 <button class="border-button p-2 m-2 rounded w-[250px]" type="submit">Login</button>
 
-            @endif
             </form>
             <div class="block py-3">
                 <p >Don't have an account?</p>

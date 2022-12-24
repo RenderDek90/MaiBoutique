@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -50,15 +51,23 @@ class UserController extends Controller
             return response()->json(['error'=>$validator->errors()], 401);
         }
 
-        // if(Auth::attempt(['email'=>$req->email , 'password'=>$req->password])){
-        //     $user = Auth::user();
-        //     $success['token'] = $user->createToken('MyApp')->accessToken;
-        //     return response()->json(['success' => $success], 200);
-        // }
-        // else{
-        //     return response()->json(['error'=>'Unauthorised'], 401);
-        // }
+        $email = $req->email;
+        $password = $req->password;
+        // Check kalo yang di masukin itu Admin atau Member atau Guest
+        // tapi seinget gua pakai ini
 
-        return view('/home');
+        //masi error, coba di cek lagi deh
+        if (Auth::attempt(['email' => $email, 'password' => $password])){
+
+            return view('home');
+        };
+        return redirect('/sign-in');
+    }
+
+    public function viewCart(){
+        // $user = User::find($id);
+
+        //Masukin biar bisa 1 user, punya 1 cart yang isinya berbagai items yang suda di klik
+        return view('/all_cart');
     }
 }

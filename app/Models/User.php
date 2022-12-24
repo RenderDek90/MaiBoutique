@@ -43,4 +43,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //Perlu ga? masi bingung kalo cart
+    public function user_cart(){
+        return $this->belongsTo(Cart::class);
+    }
 }

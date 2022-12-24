@@ -15,7 +15,6 @@
                         <form action="" class="">
                             <label for="quantity_product">Quantity:</label>
                             <div class="flex flex-row justify-center">
-
                                 <input type="text" name="quantity_product" id="" required class="mr-3 h-[2.5em]">
                                 <input class="bg-green-500 border-0 hover:bg-green-700 text-white border p-2 rounded w-[100%] h-[2.5em] hover:cursor-pointer" type="submit" value="Add to Cart">
                         </div>
@@ -28,11 +27,6 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="flex w-100  py-5 flex-col items-baseline">
-                    <a href="" class="shadow shadow-gray-400 hover:bg-gray-900 p-2 rounded hover:text-white border-2
-                    m-1 ">Edit Profile</a>
-                    <a href="" class="shadow shadow-gray-400 hover:bg-gray-900 p-2 m-1 rounded hover:text-white border-2">Edit Password</a>
-            </div> --}}
         </div>
     </div>
 @endsection
