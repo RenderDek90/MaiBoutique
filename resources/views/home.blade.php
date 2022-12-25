@@ -12,7 +12,7 @@
             <img src="{{Storage::url('images/'.$i->image)}}" class="h-[200px] w-auto"alt="">
             <p>{{$i->name}}</p>
             <p>{{$i->price}}</p>
-            <a href="/item/{{$i->id}}" class="bg-gray-500 text-white p-2 rounded">More Detail</a>
+            <a href="/item/{{$i->id}}" class="bg-blue-500 text-white p-2 rounded">More Detail</a>
         </div>
     @endforeach
 </section>

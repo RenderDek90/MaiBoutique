@@ -35,8 +35,3 @@
     background-color: rgb(17, 24, 39);
     color: white;
 }
-
-.error-msg {
-    visibility: hidden;
-    color: red;
-}

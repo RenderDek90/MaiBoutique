@@ -23,24 +23,24 @@ Route::get('/', function () {
     return view('/main');
 });
 
-// Route::get('/home', function () {
-// return view('home');
-// });
 
+//aku coba pake Auth Controller untuk LoginPage
 Route::get('/sign-in' , [AuthController::class, 'loginPage']);
-// Route::get('/sign-in' , [AuthController::class, 'loginPage']);
 
 
+Route::get('/sign-out' , [AuthController::class, '']);
+
+//Register
 Route::get('/register' ,[UserController::class, 'view'] );
 Route::post('/register' ,[UserController::class, 'saveRegister'] );
-Route::post('/getData', [UserController::class, 'getData']);
+
 
 // Route::get('/register', [])
 
 Route::get('/home', [ItemController::class, 'viewItems']);
 
 
-Route::get('/myCart', [UserController::class, 'viewCart']);
+Route::get('/cart', [UserController::class, 'viewCart']);
 Route::get('/checkout', function(){
     //view checkout ("Kayak Done Checkout atau gimana")
 });
@@ -61,6 +61,10 @@ return view('/update');
 
 Route::get('/item/{id}', [ItemController::class, 'viewItemDetail']);
 
-Route::get('/transaction-history', [CartController::class, 'viewTransactionHistory']);
+//item untuk masukin ke Cart blm bisa, gw masi bingung
+Route::post('/item', [ItemController::class, 'add_to_cart']);
+// Route::post('/addtocart', [ItemController::class, 'add_to_cart']);
+
+Route::get('/history', [CartController::class, 'viewTransactionHistory']);
 
 Route::get('/home/admin', [ItemController::class, 'viewItems']);

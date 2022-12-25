@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+
+
+use App\Models\CartDetail;
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -34,8 +39,20 @@ class ItemController extends Controller
         ]);
 
         $extension = $req->image->getClientOriginalExtension();
-    $fileName = $req->name . '.' . $extension;
+        $fileName = $req->name . '.' . $extension;
         $req->image->move('storage/images', $fileName);
+
+        // $new_item = [
+        //     [
+        //     'image' => $fileName,
+        //     'name' => $req->name,
+        //     'description' => $req->description,
+        //     'price' => $req->price,
+        //     'stock' => $req->stock
+        //     ]
+        // ];
+
+        // DB::table('items')->insert($new_item);
 
         $item = new Item();
         $item->image = $fileName;
@@ -45,7 +62,7 @@ class ItemController extends Controller
         $item->stock = $req->stock;
         $item->save();
 
-        return redirect('/home');
+        return view('home');
     }
 
     public function addItem(){
@@ -58,4 +75,19 @@ class ItemController extends Controller
 
         return view('search', ['item' => $search]);
     }
+
+    public function add_to_cart(Request $req){
+        $cart = new CartDetail();
+        $cart->quantity = $req->quantity;
+        $cart->save();
+
+        //stock - quantity
+        $item= Item::all();
+        $calculate_stock = $item->stock - $req->quantity;
+        $item->stock = $calculate_stock;
+        // $item->stock->save();
+
+        return view('transaction_history');
+    }
+
 }

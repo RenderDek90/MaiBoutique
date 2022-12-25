@@ -5,7 +5,7 @@
 
 <section class="grid justify-center bg-slate-100 ">
     <form enctype="multipart/form-data" action="/addItems" method="post" class="bg-slate-100 flex flex-col gap-y-3 rounded-2xl p-10 w-[500px]">
-
+        @csrf
     <label for="clothes_images">Clothes Image</label>
         <input type="file" class="justify-center text-sm text-slate-500 py-2 file:px-4 file:py-2
       file:rounded-full file:border-1

@@ -36,5 +36,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         DB::table('users')->insert($admin);
+
+        $this->call(ItemSeeder::class);
     }
 }

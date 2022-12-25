@@ -33,14 +33,14 @@
                     <div class="flex items-center justify-between flex-row gap-3">
                         <li><a href="#" class="text-gray-900 text-xl ">MAIBOUTIQUE</a></li>
                         <div class="opacity-50 flex items-center justify-between flex-row gap-2">
-                            <a href="">Home</a>
-                            <a href="">Search</a>
-                            <a href="">Cart</a>
-                            <a href="">History</a>
-                            <a href="">Profile</a>
+                            <a href="/home">Home</a>
+                            <a href="/search">Search</a>
+                            <a href="/cart">Cart</a>
+                            <a href="/history">History</a>
+                            <a href="/profile">Profile</a>
                         </div>
                     </div>
-                <li><a href="/sign-in" class="text-gray-900">Sign Out</a></li>
+                <li><a href="/sign-out" class="text-gray-900">Sign Out</a></li>
             </ul>
         </nav>
 
