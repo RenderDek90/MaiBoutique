@@ -22,7 +22,7 @@
             </div>
             @endif
 
-            <form action="/getData" method="post" class="bg-slate-100 flex flex-col gap-y-3 rounded-2xl p-2">
+            <form action="/sign-in" method="post" class="bg-slate-100 flex flex-col gap-y-3 rounded-2xl p-2">
 
                 @csrf
                 @if ($errors->has('email'))

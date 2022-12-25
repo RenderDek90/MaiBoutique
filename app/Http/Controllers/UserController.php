@@ -57,7 +57,7 @@ class UserController extends Controller
         // tapi seinget gua pakai ini
 
         //masi error, coba di cek lagi deh
-        if (Auth::attempt(['email' => $email, 'password' => $password])){
+    if (Auth::attempt(['email' => $email, 'password' => $password])){
 
             return view('home');
         };

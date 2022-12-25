@@ -19,19 +19,19 @@ class DatabaseSeeder extends Seeder
         //Admin
         $admin = [
             [
-            "email" => "darren123@gmail.com",
-            "username" => "Darren",
-            "password" => "darren123",
-            "role" => "Admin",
-            "phone_number" => "0815151515",
-            "address" => "jlKambing"
+            'email' => 'darren123@gmail.com',
+            'username' => 'Darren',
+            'password' => bcrypt('darren123'),
+            'role' => 'Admin',
+            'phone_number' => '0815151515',
+            'address' => 'jlKambing'
             ],[
-                "email" => "arnold@gmail.com",
-                "username" => "Arnold",
-                "password" => "arnold123",
-                "role" => "Admin",
-                "phone_number" => "0815151515",
-                "address" => "jlArnold"
+                'email' => 'arnold@gmail.com',
+                'username' => 'Arnold',
+                'password' => bcrypt('arnold123'),
+                'role' => 'Admin',
+                'phone_number' => '0815151515',
+                'address' => 'jlArnold'
             ]
         ];
 

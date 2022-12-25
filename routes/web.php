@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
@@ -26,9 +27,9 @@ Route::get('/', function () {
 // return view('home');
 // });
 
-Route::get('/sign-in' , function (){
-return view('login');
-});
+Route::get('/sign-in' , [AuthController::class, 'loginPage']);
+// Route::get('/sign-in' , [AuthController::class, 'loginPage']);
+
 
 Route::get('/register' ,[UserController::class, 'view'] );
 Route::post('/register' ,[UserController::class, 'saveRegister'] );
