@@ -26,33 +26,10 @@
             }
         </style> --}}
     </head>
-    <body class="overflow-none">
+    <body class="overflow-hidden">
         {{-- @include('loading-screen/loadingHome') --}}
-        <nav class="shadow-md">
-            <ul class="flex items-center justify-between px-14 py-4">
-                <div>
-                    <li><a href="#" class="text-gray-900 text-xl underline">MAIBOUTIQUE</a></li>
-                    <div class="opacity-50 flex items-center justify-between flex-row gap-2">
-                        <a href="">Home</a>
-                        <a href="">Search</a>
-                        <a href="">Cart</a>
-                        <a href="">History</a>
-                        <a href="">Profile</a>
-                    </div>
-                </div>
-                <div>
-                    <li><a href="/sign-in" class="text-gray-900">Add Item</a></li>
-                    <li><a href="/sign-in" class="text-gray-900">Sign Out</a></li>
-                </div>
-            </ul>
-        </nav>
 
-        {{-- Isi Kontent --}}
-        @yield('container')
-        <footer class="relative text-center text-white z-2 bg-gray-900 p-2">
-            <span>Copyright &copy; 2022. Darren & Arnold. All Right Reserved.</span>
-        </footer>
+        @yield('signin_signup')
     </body>
 
 </html>
-0

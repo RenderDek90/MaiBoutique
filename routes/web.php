@@ -25,14 +25,13 @@ Route::get('/', function () {
 
 
 //aku coba pake Auth Controller untuk LoginPage
-Route::get('/sign-in' , [AuthController::class, 'loginPage']);
-
-
-Route::get('/sign-out' , [AuthController::class, '']);
+Route::get('/sign-in' , [AuthController::class, 'signinPage']);
+Route::post('/sign-in' , [AuthController::class, 'signin']);
+Route::get('/sign-out' , [AuthController::class, 'signout']);
 
 //Register
-Route::get('/register' ,[UserController::class, 'view'] );
-Route::post('/register' ,[UserController::class, 'saveRegister'] );
+Route::get('/sign-up' ,[UserController::class, 'signupPage'] );
+Route::post('/sign-up' ,[UserController::class, 'signup'] );
 
 
 // Route::get('/register', [])
@@ -50,8 +49,8 @@ Route::get('/edit_cart/id', function (){
     return view('edit_cart');
 });
 
-Route::get('/addItems', [ItemController::class, 'addItem']);
-Route::post('/addItems', [ItemController::class, 'insertItem']);
+Route::get('/addItem', [ItemController::class, 'addItemPage']);
+Route::post('/addItem', [ItemController::class, 'addItem']);
 
 Route::get('/profile/{id}', [UserController::class, 'viewProfile']);
 
@@ -61,8 +60,10 @@ return view('/update');
 
 Route::get('/item/{id}', [ItemController::class, 'viewItemDetail']);
 
+Route::get('/delete/{id}', [ItemController::class, 'deleteItem']);
+
 //item untuk masukin ke Cart blm bisa, gw masi bingung
-Route::post('/item', [ItemController::class, 'add_to_cart']);
+Route::post('/addToCart', [ItemController::class, 'add_to_cart']);
 // Route::post('/addtocart', [ItemController::class, 'add_to_cart']);
 
 Route::get('/history', [CartController::class, 'viewTransactionHistory']);

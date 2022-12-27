@@ -10,16 +10,19 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function viewProfile($id){
+    public function viewProfile($id)
+    {
         $user = User::find($id);
         return view('profile', ['user' => $user]);
     }
 
-    public function view(){
-        return view('register');
+    public function signupPage()
+    {
+        return view('signup');
     }
 
-    public function saveRegister(Request $req){
+    public function signup(Request $req)
+    {
 
         $rules = $req->validate([
             'username' => 'required|min:3|max:50',
@@ -34,21 +37,22 @@ class UserController extends Controller
         $user->email = $rules['email'];
         $user->address = $rules['address'];
         $user->phone_number = $rules['phone_number'];
-        $user->password = $rules['password'];
+        $user->password = bcrypt($rules['password']);
         $user->role = 'Member';
         $user->save();
 
-        return redirect('/sign-in')->with('success', 'Successfully Registered!');
+        return redirect('/home');
     }
 
-    public function getData(Request $req){
+    public function getData(Request $req)
+    {
 
-        $validator = Validator::make($req->all(),[
+        $validator = Validator::make($req->all(), [
             'email' => 'required|email',
             'password' => 'required'
         ]);
-        if($validator->fails()){
-            return response()->json(['error'=>$validator->errors()], 401);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 401);
         }
 
         $email = $req->email;
@@ -57,14 +61,15 @@ class UserController extends Controller
         // tapi seinget gua pakai ini
 
         //masi error, coba di cek lagi deh
-    if (Auth::attempt(['email' => $email, 'password' => $password])){
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
 
             return view('home');
         };
         return redirect('/sign-in');
     }
 
-    public function viewCart(){
+    public function viewCart()
+    {
         // $user = User::find($id);
 
         //Masukin biar bisa 1 user, punya 1 cart yang isinya berbagai items yang suda di klik

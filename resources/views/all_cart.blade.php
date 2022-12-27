@@ -1,4 +1,4 @@
-@extends('layouts.navHome')
+@extends('layouts.navbar')
 
 @section('container')
 

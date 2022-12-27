@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Validator;
 class ItemController extends Controller
 {
 
-    public function viewItems(){
+    public function viewItems()
+    {
         $item = Item::all();
         return view('home', ['item' => $item]);
     }
@@ -28,8 +29,8 @@ class ItemController extends Controller
         return view('item_detail', ['item' => $item]);
     }
 
-    public function insertItem(Request $req){
-
+    public function addItem(Request $req)
+    {
         $req->validate([
             'image' => 'required|image|file|max:2000',
             'name' => 'required|string|min:5|max:255',
@@ -37,22 +38,9 @@ class ItemController extends Controller
             'price' => 'required|numeric|min:4',
             'stock' => 'required|min:1'
         ]);
-
         $extension = $req->image->getClientOriginalExtension();
         $fileName = $req->name . '.' . $extension;
         $req->image->move('storage/images', $fileName);
-
-        // $new_item = [
-        //     [
-        //     'image' => $fileName,
-        //     'name' => $req->name,
-        //     'description' => $req->description,
-        //     'price' => $req->price,
-        //     'stock' => $req->stock
-        //     ]
-        // ];
-
-        // DB::table('items')->insert($new_item);
 
         $item = new Item();
         $item->image = $fileName;
@@ -65,29 +53,38 @@ class ItemController extends Controller
         return view('home');
     }
 
-    public function addItem(){
+    public function addItemPage()
+    {
         return view('addItem');
     }
 
-    public function searchItem($id){
+    public function deleteItem($id)
+    {
+        $item = Item::find($id);
+        // delete file local masi ga bisa
+        // Storage::delete($item->image);
+        $item->delete();
+        return redirect('/home');
+    }
 
+    public function searchItem($id)
+    {
         $search = Item::find($id);
-
         return view('search', ['item' => $search]);
     }
 
-    public function add_to_cart(Request $req){
+    public function add_to_cart(Request $req)
+    {
         $cart = new CartDetail();
         $cart->quantity = $req->quantity;
         $cart->save();
 
         //stock - quantity
-        $item= Item::all();
+        $item = Item::all();
         $calculate_stock = $item->stock - $req->quantity;
         $item->stock = $calculate_stock;
         // $item->stock->save();
 
         return view('transaction_history');
     }
-
 }
