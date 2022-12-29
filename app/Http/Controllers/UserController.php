@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\CartDetail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -68,11 +70,12 @@ class UserController extends Controller
         return redirect('/sign-in');
     }
 
-    public function viewCart()
+    public function viewCart($id)
     {
-        // $user = User::find($id);
+        $cart = Cart::find($id);
+        $carts = CartDetail::find($id);
 
         //Masukin biar bisa 1 user, punya 1 cart yang isinya berbagai items yang suda di klik
-        return view('/all_cart');
+        return view('all_cart', ['cart' => $cart, 'carts'=>$carts]);
     }
 }

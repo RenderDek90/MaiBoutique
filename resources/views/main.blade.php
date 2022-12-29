@@ -1,4 +1,5 @@
 @extends('layouts.navbar')
+
 @section('container')
     <section class="bg-cover bg-[url('/storage/images/clothingStore.jpg')]">
         <div class="bg-gray-900 bg-opacity-70 h-screen">

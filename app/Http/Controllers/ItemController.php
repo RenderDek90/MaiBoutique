@@ -75,15 +75,18 @@ class ItemController extends Controller
 
     public function add_to_cart(Request $req)
     {
-        $cart = new CartDetail();
-        $cart->quantity = $req->quantity;
-        $cart->save();
 
         //stock - quantity
         $item = Item::all();
         $calculate_stock = $item->stock - $req->quantity;
         $item->stock = $calculate_stock;
-        // $item->stock->save();
+        $item->save();
+
+        //masukin quantity
+        $cart = new CartDetail();
+        $cart->quantity = $req->quantity;
+        $cart->save();
+
 
         return view('transaction_history');
     }

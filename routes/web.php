@@ -39,7 +39,7 @@ Route::post('/sign-up' ,[UserController::class, 'signup'] );
 Route::get('/home', [ItemController::class, 'viewItems']);
 
 
-Route::get('/cart', [UserController::class, 'viewCart']);
+Route::get('/cart/{id}', [UserController::class, 'viewCart']);
 Route::get('/checkout', function(){
     //view checkout ("Kayak Done Checkout atau gimana")
 });
