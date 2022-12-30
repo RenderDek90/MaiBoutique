@@ -7,7 +7,6 @@ use App\Models\CartDetail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -26,7 +25,7 @@ class UserController extends Controller
     public function signup(Request $req)
     {
 
-        $rules = $req->validate([
+        $val = $req->validate([
             'username' => 'required|min:3|max:50',
             'email' => 'required|email|unique:users,email',
             'address' => 'required|min:5|max:255',
@@ -35,11 +34,11 @@ class UserController extends Controller
         ]);
 
         $user = new User();
-        $user->username = $rules['username'];
-        $user->email = $rules['email'];
-        $user->address = $rules['address'];
-        $user->phone_number = $rules['phone_number'];
-        $user->password = bcrypt($rules['password']);
+        $user->username = $val['username'];
+        $user->email = $val['email'];
+        $user->address = $val['address'];
+        $user->phone_number = $val['phone_number'];
+        $user->password = bcrypt($val['password']);
         $user->role = 'Member';
         $user->save();
 

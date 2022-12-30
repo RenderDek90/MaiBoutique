@@ -8,9 +8,7 @@ use App\Models\Cart;
 use App\Models\CartDetail;
 use App\Models\Item;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 
 // use Illuminate\Http\Request;
 
@@ -29,14 +27,19 @@ class ItemController extends Controller
         return view('item_detail', ['item' => $item]);
     }
 
+    public function addItemPage()
+    {
+        return view('add_item');
+    }
+
     public function addItem(Request $req)
     {
-        $req->validate([
+        $val = $req->validate([
             'image' => 'required|image|file|max:2000',
             'name' => 'required|string|min:5|max:255',
             'description' => 'required|string|min:5|max:255',
             'price' => 'required|numeric|min:4',
-            'stock' => 'required|min:1'
+            'stock' => 'required|min:1|max:999'
         ]);
         $extension = $req->image->getClientOriginalExtension();
         $fileName = $req->name . '.' . $extension;
@@ -44,18 +47,13 @@ class ItemController extends Controller
 
         $item = new Item();
         $item->image = $fileName;
-        $item->name = $req->name;
-        $item->description = $req->description;
-        $item->price = $req->price;
-        $item->stock = $req->stock;
+        $item->name = $val['name'];
+        $item->description = $val['description'];
+        $item->price = $val['price'];
+        $item->stock = $val['stock'];
         $item->save();
 
-        return view('home');
-    }
-
-    public function addItemPage()
-    {
-        return view('addItem');
+        return redirect('/home');
     }
 
     public function deleteItem($id)

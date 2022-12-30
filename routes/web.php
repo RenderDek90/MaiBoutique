@@ -49,8 +49,8 @@ Route::get('/edit_cart/id', function (){
     return view('edit_cart');
 });
 
-Route::get('/addItem', [ItemController::class, 'addItemPage']);
-Route::post('/addItem', [ItemController::class, 'addItem']);
+Route::get('/add-item', [ItemController::class, 'addItemPage']);
+Route::post('/add-item', [ItemController::class, 'addItem']);
 
 Route::get('/profile/{id}', [UserController::class, 'viewProfile']);
 
