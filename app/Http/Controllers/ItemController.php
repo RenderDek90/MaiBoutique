@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
-
-
 use App\Models\CartDetail;
 use App\Models\Item;
 use Illuminate\Http\Request;
@@ -65,11 +62,19 @@ class ItemController extends Controller
         return redirect('/home');
     }
 
-    public function searchItem($id)
-    {
-        $search = Item::find($id);
-        return view('search', ['item' => $search]);
+    // public function searchItemPage()
+    // {
+    //     $item = Item::all();
+    //     return view('search', ['item' => $item]);
+    // }
+
+    public function searchItem(Request $req){
+        $search = $req->search;
+        $item = Item::where('name', 'LIKE', "%$search%")->paginate(8)->appends(['search' => $search]);
+        return view('search', ['item' => $item]);
     }
+
+
 
     public function add_to_cart(Request $req)
     {

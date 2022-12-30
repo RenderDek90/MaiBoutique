@@ -16,8 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// guest
 Route::get('/', function () {
-    return view('/main');
+    return view('main');
 });
 
 // sign in
@@ -29,7 +30,7 @@ Route::get('/sign-out', [UserController::class, 'signout']);
 Route::get('/sign-up', [UserController::class, 'signupPage']);
 Route::post('/sign-up', [UserController::class, 'signup']);
 
-// all items
+// home
 Route::get('/home', [ItemController::class, 'viewItems']);
 // item details
 Route::get('/item/{id}', [ItemController::class, 'viewItemDetail']);
@@ -38,6 +39,12 @@ Route::get('/add-item', [ItemController::class, 'addItemPage']);
 Route::post('/add-item', [ItemController::class, 'addItem']);
 // delete item (admin)
 Route::get('/delete/{id}', [ItemController::class, 'deleteItem']);
+
+// search
+Route::get('/search', [ItemController::class, 'searchItem']);
+
+
+
 
 
 Route::get('/cart/{id}', [UserController::class, 'viewCart']);
