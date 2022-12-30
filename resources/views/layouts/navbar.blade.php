@@ -33,7 +33,6 @@
     <nav class="shadow-md">
         <ul class="flex items-center justify-between px-14 py-4">
             @auth
-                @if (Auth::user()->role == 'Member')
                 <div class="flex items-center justify-between flex-row gap-3">
                     <li>
                         <div class="text-gray-900 text-xl underline">MaiBoutique</div>
@@ -47,18 +46,17 @@
                     </div>
                 </div>
                 <li><a href="/sign-out" class="text-gray-900">Sign Out</a></li>
-                @endif
 
                 @if (Auth::user()->role == 'Admin')
                     <li><a href="/addItem" class="text-gray-900">Add Item</a></li>
                 @endif
             @else
-            <div class="flex items-center justify-between flex-row gap-3">
-                <li>
-                    <div class="text-gray-900 text-xl underline">MaiBoutique</div>
-                </li>
-                <li><a href="/sign-in" class="text-gray-900">Sign In</a></li>
-            </div>
+                <div class="flex items-center justify-between flex-row gap-3">
+                    <li>
+                        <div class="text-gray-900 text-xl underline">MaiBoutique</div>
+                    </li>
+                    <li><a href="/sign-in" class="text-gray-900">Sign In</a></li>
+                </div>
             @endauth
         </ul>
     </nav>
