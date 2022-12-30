@@ -14,10 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        //Admin
-        $admin = [
+        $users = [
             [
                 'email' => 'darren123@gmail.com',
                 'username' => 'Darren',
@@ -44,8 +41,6 @@ class DatabaseSeeder extends Seeder
             ]
         ];
 
-        DB::table('users')->insert($admin);
-
-        $this->call(ItemSeeder::class);
+        DB::table('users')->insert($users);
     }
 }
