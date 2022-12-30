@@ -35,11 +35,11 @@ class ItemController extends Controller
     public function addItem(Request $req)
     {
         $val = $req->validate([
-            'image' => 'required|image|file|max:2000',
-            'name' => 'required|string|min:5|max:255',
-            'description' => 'required|string|min:5|max:255',
-            'price' => 'required|numeric|min:4',
-            'stock' => 'required|min:1|max:999'
+            'image' => 'required|mimes:jpg,png,jpeg',
+            'name' => 'required|string|min:5|max:20|unique:items,name',
+            'description' => 'required|string|min:5',
+            'price' => 'required|integer|gte:1000',
+            'stock' => 'required|integer|gte:1'
         ]);
         $extension = $req->image->getClientOriginalExtension();
         $fileName = $req->name . '.' . $extension;

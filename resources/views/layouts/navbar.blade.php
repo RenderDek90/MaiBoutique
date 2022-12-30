@@ -42,7 +42,7 @@
                         <a href="/search">Search</a>
                         <a href="/cart">Cart</a>
                         <a href="/history">History</a>
-                        <a href="/profile">Profile</a>
+                        <a href="/profile/{{ Auth::user()->id }}">Profile</a>
                     </div>
                 </div>
                 <li><a href="/sign-out" class="text-gray-900">Sign Out</a></li>
@@ -51,12 +51,12 @@
                     <li><a href="/add-item" class="text-gray-900">Add Item</a></li>
                 @endif
             @else
-            <div class="flex items-center justify-between flex-row gap-3">
-                <li>
-                    <div class="text-gray-900 text-xl underline">MaiBoutique</div>
-                </li>
-                <li><a href="/sign-in" class="text-gray-900">Sign In</a></li>
-            </div>
+                <div class="flex items-center justify-between flex-row gap-3">
+                    <li>
+                        <div class="text-gray-900 text-xl underline">MaiBoutique</div>
+                    </li>
+                    <li><a href="/sign-in" class="text-gray-900">Sign In</a></li>
+                </div>
             @endauth
         </ul>
     </nav>

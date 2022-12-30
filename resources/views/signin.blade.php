@@ -29,14 +29,14 @@
                         <span class="text-red-800">{{ $errors->first('email') }}</span>
                     @endif
                     <label for="email" class="px-2">Email</label>
-                    <input class="p-2 m-2 rounded border-form w-[250px]" type="text" name="email" placeholder="Email">
+                    <input class="p-2 m-2 rounded border-form w-[250px]" type="text" name="email" placeholder="">
 
                     @if ($errors->has('password'))
                         <span class="text-red-800">{{ $errors->first('password') }}</span>
                     @endif
                     <label for="email" class="px-2">Passwords</label>
                     <input type="password" class="p-2 m-2 rounded border-form w-[250px]" name="password"
-                        placeholder="Password">
+                        placeholder="5-20 Characters">
 
                     {{-- Password Reset gatau harus gini atau gimana --}}
                     @if (Route::has('password.request'))
