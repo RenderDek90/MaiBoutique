@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -27,7 +28,7 @@ class AuthController extends Controller
         }
 
         if (Auth::attempt($credentials, true)) {
-            // Session::
+            Session::put('session', $credentials);
             return redirect('/home');
         }
         return redirect('/sign-in')->with('message', 'Please try again!');

@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
-
-
 use App\Models\CartDetail;
 use App\Models\Item;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 
 // use Illuminate\Http\Request;
 
@@ -29,14 +24,19 @@ class ItemController extends Controller
         return view('item_detail', ['item' => $item]);
     }
 
+    public function addItemPage()
+    {
+        return view('add_item');
+    }
+
     public function addItem(Request $req)
     {
-        $req->validate([
-            'image' => 'required|image|file|max:2000',
-            'name' => 'required|string|min:5|max:255',
-            'description' => 'required|string|min:5|max:255',
-            'price' => 'required|numeric|min:4',
-            'stock' => 'required|min:1'
+        $val = $req->validate([
+            'image' => 'required|mimes:jpg,png,jpeg',
+            'name' => 'required|string|min:5|max:20|unique:items,name',
+            'description' => 'required|string|min:5',
+            'price' => 'required|integer|gte:1000',
+            'stock' => 'required|integer|gte:1'
         ]);
         $extension = $req->image->getClientOriginalExtension();
         $fileName = $req->name . '.' . $extension;
@@ -44,18 +44,13 @@ class ItemController extends Controller
 
         $item = new Item();
         $item->image = $fileName;
-        $item->name = $req->name;
-        $item->description = $req->description;
-        $item->price = $req->price;
-        $item->stock = $req->stock;
+        $item->name = $val['name'];
+        $item->description = $val['description'];
+        $item->price = $val['price'];
+        $item->stock = $val['stock'];
         $item->save();
 
-        return view('home');
-    }
-
-    public function addItemPage()
-    {
-        return view('addItem');
+        return redirect('/home');
     }
 
     public function deleteItem($id)
@@ -67,11 +62,19 @@ class ItemController extends Controller
         return redirect('/home');
     }
 
-    public function searchItem($id)
-    {
-        $search = Item::find($id);
-        return view('search', ['item' => $search]);
+    // public function searchItemPage()
+    // {
+    //     $item = Item::all();
+    //     return view('search', ['item' => $item]);
+    // }
+
+    public function searchItem(Request $req){
+        $search = $req->search;
+        $item = Item::where('name', 'LIKE', "%$search%")->paginate(8)->appends(['search' => $search]);
+        return view('search', ['item' => $item]);
     }
+
+
 
     public function add_to_cart(Request $req)
     {

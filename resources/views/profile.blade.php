@@ -14,11 +14,12 @@
                 </div>
             </div>
             <div class="flex w-100  py-5 flex-col items-baseline">
-                <a href=""
-                    class="shadow shadow-gray-400 hover:bg-gray-900 p-2 rounded hover:text-white border-2
-                    m-1 ">Edit
-                    Profile</a>
-                <a href=""
+                @if (Auth::user()->role == 'Member')
+                    <a href="/update/{{Auth::user()->id}}"
+                        class="shadow shadow-gray-400 hover:bg-gray-900 p-2 rounded hover:text-white border-2 m-1 ">Edit
+                        Profile</a>
+                @endif
+                <a href="/edit_password/{{Auth::user()->id}}"
                     class="shadow shadow-gray-400 hover:bg-gray-900 p-2 m-1 rounded hover:text-white border-2">Edit
                     Password</a>
             </div>

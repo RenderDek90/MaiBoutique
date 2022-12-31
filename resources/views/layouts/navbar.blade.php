@@ -22,10 +22,6 @@
     {{-- @include('loading-screen/loadingHome') --}}
     <nav class="shadow-md">
         <ul class="flex items-center justify-between px-14 py-4">
-            <div class="flex items-center justify-between flex-row gap-3">
-                <li><div class="text-gray-900 text-xl underline">MaiBoutique</div></li>
-                <li><a href="/sign-in" class="text-gray-900">Sign In</a></li>
-            </div>
             @auth
                 @if (Auth::user()->role == 'Member')
                 <div class="flex items-center justify-between flex-row gap-3">
@@ -35,9 +31,9 @@
                     <div class="opacity-50 flex items-center justify-between flex-row gap-2">
                         <a href="/home">Home</a>
                         <a href="/search">Search</a>
-                        <a href="/cart">Cart</a>
+                        <a href="/cart/{{Auth::user()->id}}">Cart</a>
                         <a href="/history">History</a>
-                        <a href="/profile">Profile</a>
+                        <a href="/profile/{{Auth::user()->id}}">Profile</a>
                     </div>
                 </div>
                 <li><a href="/sign-out" class="text-gray-900">Sign Out</a></li>
@@ -51,17 +47,16 @@
                     <div class="opacity-50 flex items-center justify-between flex-row gap-2">
                         <a href="/home">Home</a>
                         <a href="/search">Search</a>
-                        <a href="/cart">Cart</a>
+                        <a href="/cart/{{Auth::user()->id}}">Cart</a>
                         <a href="/history">History</a>
-                        <a href="/profile">Profile</a>
+                        <a href="/profile/{{Auth::user()->id}}">Profile</a>
                     </div>
                 </div>
-                    <li><a href="/addItem" class="text-gray-900">Add Item</a></li>
-                    <li><a href="/sign-out" class="text-gray-900">Sign Out</a></li>
+                <li><a href="/addItems" class="text-gray-900">Add Items</a></li>
+                <li><a href="/sign-out" class="text-gray-900">Sign Out</a></li>
                 @endif
-            @else
-                
-
+                @else
+                <div>No Session!!</div>
             @endauth
         </ul>
     </nav>

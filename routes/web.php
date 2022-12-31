@@ -1,12 +1,9 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,53 +16,62 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+// guest
 Route::get('/', function () {
-    return view('/main');
+    return view('main');
 });
 
+// sign in
+Route::get('/sign-in', [UserController::class, 'signinPage']);
+Route::post('/sign-in', [UserController::class, 'signin']);
+// sign out
+Route::get('/sign-out', [UserController::class, 'signout']);
+// sign up
+Route::get('/sign-up', [UserController::class, 'signupPage']);
+Route::post('/sign-up', [UserController::class, 'signup']);
 
-//aku coba pake Auth Controller untuk LoginPage
-Route::get('/sign-in' , [AuthController::class, 'signinPage']);
-Route::post('/sign-in' , [AuthController::class, 'signin']);
-Route::get('/sign-out' , [AuthController::class, 'signout']);
-
-//Register
-Route::get('/sign-up' ,[UserController::class, 'signupPage'] );
-Route::post('/sign-up' ,[UserController::class, 'signup'] );
-
-
-// Route::get('/register', [])
-
+// home
 Route::get('/home', [ItemController::class, 'viewItems']);
+// item details
+Route::get('/item/{id}', [ItemController::class, 'viewItemDetail']);
+// add item (admin)
+Route::get('/add-item', [ItemController::class, 'addItemPage']);
+Route::post('/add-item', [ItemController::class, 'addItem']);
+// delete item (admin)
+Route::get('/delete/{id}', [ItemController::class, 'deleteItem']);
+
+// search
+Route::get('/search', [ItemController::class, 'searchItem']);
+
+
+
 
 
 Route::get('/cart/{id}', [UserController::class, 'viewCart']);
-Route::get('/checkout', function(){
+Route::get('/checkout', function () {
     //view checkout ("Kayak Done Checkout atau gimana")
 });
 
-Route::get('/edit_cart/id', function (){
+Route::get('/edit_cart/id', function () {
     // harusnya ada Id, untuk tau Item yang mana untuk di Update
     return view('edit_cart');
 });
 
-Route::get('/addItem', [ItemController::class, 'addItemPage']);
-Route::post('/addItem', [ItemController::class, 'addItem']);
 
+// profile
 Route::get('/profile/{id}', [UserController::class, 'viewProfile']);
 
-Route::get('/password-update', function(){
-return view('/update');
-});
+//Update
+Route::post('/update_profile/{id}',[UserController::class, 'update_prof']);
 
-Route::get('/item/{id}', [ItemController::class, 'viewItemDetail']);
 
-Route::get('/delete/{id}', [ItemController::class, 'deleteItem']);
+// Route::get('/password_update/{id}', function () {
+//     return view('/update');
+// });
+
 
 //item untuk masukin ke Cart blm bisa, gw masi bingung
 Route::post('/addToCart', [ItemController::class, 'add_to_cart']);
 // Route::post('/addtocart', [ItemController::class, 'add_to_cart']);
 
 Route::get('/history', [CartController::class, 'viewTransactionHistory']);
-
-Route::get('/home/admin', [ItemController::class, 'viewItems']);
