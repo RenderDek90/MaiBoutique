@@ -64,8 +64,6 @@ class UserController extends Controller
         if($req->remember){
             Cookie::queue('mycookie', $req->email, 5);
         }
-
-
         if (Auth::attempt($credentials, true)) {
             Session::put('mysession', $credentials);
             return redirect('/home');
