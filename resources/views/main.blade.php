@@ -1,4 +1,4 @@
-@extends('layouts.landing_navbar')
+@extends('layouts.navbar')
 
 @section('container')
     <section class="bg-cover bg-[url('/storage/images/clothingStore.jpg')]">

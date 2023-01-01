@@ -23,7 +23,6 @@
     <nav class="shadow-md">
         <ul class="flex items-center justify-between px-14 py-4">
             @auth
-                @if (Auth::user()->role == 'Member')
                 <div class="flex items-center justify-between flex-row gap-3">
                     <li>
                         <div class="text-gray-900 text-xl underline">MaiBoutique</div>
@@ -31,32 +30,20 @@
                     <div class="opacity-50 flex items-center justify-between flex-row gap-2">
                         <a href="/home">Home</a>
                         <a href="/search">Search</a>
-                        <a href="/cart/{{Auth::user()->id}}">Cart</a>
+                        <a href="/cart">Cart</a>
                         <a href="/history">History</a>
-                        <a href="/profile/{{Auth::user()->id}}">Profile</a>
+                        <a href="/profile">Profile</a>
                     </div>
                 </div>
-                <li><a href="/sign-out" class="text-gray-900">Sign Out</a></li>
-                @endif
-
                 @if (Auth::user()->role == 'Admin')
-                <div class="flex items-center justify-between flex-row gap-3">
-                    <li>
-                        <div class="text-gray-900 text-xl underline">MaiBoutique</div>
-                    </li>
-                    <div class="opacity-50 flex items-center justify-between flex-row gap-2">
-                        <a href="/home">Home</a>
-                        <a href="/search">Search</a>
-                        <a href="/cart/{{Auth::user()->id}}">Cart</a>
-                        <a href="/history">History</a>
-                        <a href="/profile/{{Auth::user()->id}}">Profile</a>
-                    </div>
-                </div>
-                <li><a href="/addItems" class="text-gray-900">Add Items</a></li>
-                <li><a href="/sign-out" class="text-gray-900">Sign Out</a></li>
+                    <li><a href="/add-item" class="text-gray-900">Add Items</a></li>
                 @endif
-                @else
-                <div>No Session!!</div>
+                <li><a href="/sign-out" class="text-gray-900">Sign Out</a></li>
+            @else
+                <li>
+                    <div class="text-gray-900 text-xl underline">MaiBoutique</div>
+                </li>
+                <li><a href="/sign-in" class="text-gray-900">Sign In</a></li>
             @endauth
         </ul>
     </nav>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CartDetail;
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 // use Illuminate\Http\Request;
@@ -48,6 +49,7 @@ class ItemController extends Controller
         $item->description = $val['description'];
         $item->price = $val['price'];
         $item->stock = $val['stock'];
+        $item->created_at = Carbon::now();
         $item->save();
 
         return redirect('/home');
@@ -62,35 +64,10 @@ class ItemController extends Controller
         return redirect('/home');
     }
 
-    // public function searchItemPage()
-    // {
-    //     $item = Item::all();
-    //     return view('search', ['item' => $item]);
-    // }
-
-    public function searchItem(Request $req){
+    public function searchItem(Request $req)
+    {
         $search = $req->search;
         $item = Item::where('name', 'LIKE', "%$search%")->paginate(8)->appends(['search' => $search]);
         return view('search', ['item' => $item]);
-    }
-
-
-
-    public function add_to_cart(Request $req)
-    {
-
-        //stock - quantity
-        $item = Item::all();
-        $calculate_stock = $item->stock - $req->quantity;
-        $item->stock = $calculate_stock;
-        $item->save();
-
-        //masukin quantity
-        $cart = new CartDetail();
-        $cart->quantity = $req->quantity;
-        $cart->save();
-
-
-        return view('transaction_history');
     }
 }

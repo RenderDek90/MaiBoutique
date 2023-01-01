@@ -9,12 +9,7 @@ class Cart extends Model
 {
     use HasFactory;
 
-    public function cart_details() {
-        return $this->hasMany(CartDetail::class);
-    }
-
-    //gatau perlu apa engga
-    public function cart_items(){
-        return $this->hasMany(Item::class);
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }

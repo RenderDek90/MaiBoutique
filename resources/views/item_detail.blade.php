@@ -14,12 +14,12 @@
                         <p>{{ $item->description }}</p>
                         @auth
                             @if (Auth::user()->role == 'Member')
-                                <form action="/addToCart" method="POST" class="flex flex-col">
+                                <form action="/addToCart/{{ $item->id }}" method="POST" class="flex flex-col">
                                     @csrf
                                     <label for="quantity_product" class="font-bold">Quantity:</label>
                                     <div class="flex flex-row justify-between">
                                         <select name="quantity" id="quantity" class="mx-2 border-1 w-[100px]">
-                                            @for ($i = 1; $i < 100; $i++)
+                                            @for ($i = 1; $i <= $item->stock; $i++)
                                                 <option value="{{ $i }}" class="">{{ $i }}</option>
                                             @endfor
                                         </select>

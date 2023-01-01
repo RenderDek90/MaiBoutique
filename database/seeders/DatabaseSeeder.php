@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
@@ -21,7 +22,8 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('darren123'),
                 'role' => 'Admin',
                 'phone_number' => '0815151515',
-                'address' => 'jlKambing'
+                'address' => 'jlKambing',
+                'created_at' => Carbon::now()
             ],
             [
                 'email' => 'arnold@gmail.com',
@@ -29,7 +31,8 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('arnold123'),
                 'role' => 'Admin',
                 'phone_number' => '0815151515',
-                'address' => 'jlArnold'
+                'address' => 'jlArnold',
+                'created_at' => Carbon::now()
             ],
             [
                 'email' => 'member@gmail.com',
@@ -37,29 +40,40 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('member123'),
                 'role' => 'Member',
                 'phone_number' => '0815151515',
-                'address' => 'jlMember'
+                'address' => 'jlMember',
+                'created_at' => Carbon::now()
             ]
         ];
-
         DB::table('users')->insert($users);
 
-        $temp_data = [
+        $carts = [
+            [
+                'user_id' => 3,
+                'total_price' => '0',
+                'status' => 'not checked out',
+                'created_at' => Carbon::now()
+            ]
+        ];
+        DB::table('carts')->insert($carts);
+
+        $items = [
             [
                 'image' => 'durian.png',
                 'name' => 'Durian',
                 'description' => 'Durian (Durio zibethinus) is a tropical fruit grown in Southeast Asia and highly appreciated by consumers throughout Asia. Folates are a group of vitamins and are essential nutrients for humans',
                 'price' => 20000,
-                'stock' => 20
+                'stock' => 20,
+                'created_at' => Carbon::now()
             ],
             [
                 'image' => 'asd.png',
                 'name' => 'Trash',
                 'description' => 'Trash damage or destroy something, either deliberately or because you did not take good care of it',
                 'price' => 50000,
-                'stock' => 90
+                'stock' => 90,
+                'created_at' => Carbon::now()
             ]
         ];
-
-        DB::table('items')->insert($temp_data);
+        DB::table('items')->insert($items);
     }
 }

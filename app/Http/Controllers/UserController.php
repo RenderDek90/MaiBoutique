@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\CartDetail;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
@@ -34,7 +35,15 @@ class UserController extends Controller
         $user->phone_number = $val['phone_number'];
         $user->password = bcrypt($val['password']);
         $user->role = 'Member';
+        $user->created_at = Carbon::now();
         $user->save();
+
+        $cart = new Cart();
+        $cart->user_id = $user->id;
+        $cart->total_price = 0;
+        $cart->status = "not checked out";
+        $cart->created_at = Carbon::now();
+        $cart->save();
 
         Auth::login($user);
         return redirect('/home');
@@ -70,26 +79,17 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    public function viewProfile($id)
+    public function viewProfile()
     {
-        $user = User::find($id);
+        $user = Auth::user();
         return view('profile', ['user' => $user]);
     }
 
-    public function viewCart($id)
-    {
-        $cart = Cart::find($id);
-        $carts = CartDetail::find($id);
+    // public function update_prof($id){
+    //     $user = User::where($id);
 
-        //Masukin biar bisa 1 user, punya 1 cart yang isinya berbagai items yang suda di klik
-        return view('all_cart', ['cart' => $cart, 'carts' => $carts]);
-    }
-
-    public function update_prof($id){
-        $user = User::where($id);
-
-        return view('update', ['user' => $user]);
-    }
+    //     return view('update', ['user' => $user]);
+    // }
 
     // public function getData(Request $req)
     // {

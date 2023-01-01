@@ -9,6 +9,10 @@ class CartDetail extends Model
 {
     use HasFactory;
 
+    public function cart(){
+        return $this->belongsTo(Cart::class);
+    }
+
     public function item(){
         return $this->belongsTo(Item::class);
     }

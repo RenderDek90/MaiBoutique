@@ -43,11 +43,21 @@ Route::get('/delete/{id}', [ItemController::class, 'deleteItem']);
 // search
 Route::get('/search', [ItemController::class, 'searchItem']);
 
+// add item to cart
+Route::post('/addToCart/{id}', [CartController::class, 'add_to_cart']);
+// view active cart
+Route::get('/cart', [CartController::class, 'viewActiveCart']);
+
+// profile
+Route::get('/profile', [UserController::class, 'viewProfile']);
 
 
 
 
-Route::get('/cart/{id}', [UserController::class, 'viewCart']);
+
+
+
+
 Route::get('/checkout', function () {
     //view checkout ("Kayak Done Checkout atau gimana")
 });
@@ -58,20 +68,12 @@ Route::get('/edit_cart/id', function () {
 });
 
 
-// profile
-Route::get('/profile/{id}', [UserController::class, 'viewProfile']);
-
 //Update
-Route::post('/update_profile/{id}',[UserController::class, 'update_prof']);
+Route::post('/update_profile/{id}', [UserController::class, 'update_prof']);
 
 
 // Route::get('/password_update/{id}', function () {
 //     return view('/update');
 // });
-
-
-//item untuk masukin ke Cart blm bisa, gw masi bingung
-Route::post('/addToCart', [ItemController::class, 'add_to_cart']);
-// Route::post('/addtocart', [ItemController::class, 'add_to_cart']);
 
 Route::get('/history', [CartController::class, 'viewTransactionHistory']);
