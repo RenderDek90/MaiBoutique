@@ -15,7 +15,9 @@ class ItemController extends Controller
 
     public function viewItems()
     {
-        $item = Item::all();
+        // $item = Item::all();
+        $item = Item::paginate(3);
+
         return view('home', ['item' => $item]);
     }
 

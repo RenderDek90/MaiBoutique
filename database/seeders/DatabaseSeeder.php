@@ -72,6 +72,30 @@ class DatabaseSeeder extends Seeder
                 'price' => 50000,
                 'stock' => 90,
                 'created_at' => Carbon::now()
+            ],
+            [
+                'image' => 'asd.png',
+                'name' => 'Dead',
+                'description' => 'Trash damage or destroy something, either deliberately or because you did not take good care of it',
+                'price' => 50000,
+                'stock' => 90,
+                'created_at' => Carbon::now()
+            ],
+            [
+                'image' => 'asd.png',
+                'name' => 'kkkimim',
+                'description' => 'Trash damage or destroy something, either deliberately or because you did not take good care of it',
+                'price' => 50000,
+                'stock' => 90,
+                'created_at' => Carbon::now()
+            ],
+            [
+                'image' => 'asd.png',
+                'name' => 'aksmdkamsdkams',
+                'description' => 'Trash damage or destroy something, either deliberately or because you did not take good care of it',
+                'price' => 50000,
+                'stock' => 90,
+                'created_at' => Carbon::now()
             ]
         ];
         DB::table('items')->insert($items);

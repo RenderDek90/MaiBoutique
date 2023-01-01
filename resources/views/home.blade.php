@@ -11,5 +11,9 @@
                 <a href="/item/{{ $i->id }}" class="bg-blue-500 text-white p-2 rounded">More Detail</a>
             </div>
         @endforeach
+
     </section>
+
+    <div class="flex flex-row justify-center p-5">{{$item->withQueryString()->links()}}
+        </div>
 @endsection

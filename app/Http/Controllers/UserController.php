@@ -83,6 +83,25 @@ class UserController extends Controller
         return view('profile', ['user' => $user]);
     }
 
+
+    // Untuk view Blade
+    public function viewUpPassPage($id){
+        $user = User::find($id);
+
+        return view('forgot_password', ['user' => $user]);
+    }
+
+    //Update Password masi eror
+    public function update_password(Request $req){
+        $user = User::find(Auth::user()->id);
+        $new_pass = $req->validate(['password' => 'required|min:5|max:30']);
+
+        $user->password = bcrypt($new_pass['password']);
+
+        return redirect('/signin');
+    }
+
+
     // public function update_prof($id){
     //     $user = User::where($id);
 

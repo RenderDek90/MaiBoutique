@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,12 +52,12 @@ Route::get('/cart', [CartController::class, 'viewActiveCart']);
 // profile
 Route::get('/profile', [UserController::class, 'viewProfile']);
 
-
-
-
-
-
-
+//Forgot Password
+Route::get('/update_password/{id}', [UserController::class, 'viewUpPassPage']);
+Route::post('/update_password/{id}', [UserController::class, 'update_password']);
+// Route::get('/edit_password/{id}', function ($id){
+//     return redirect()->action([UserController::class, 'viewUpPassPage']);
+// })->where('id', Auth::user()->id);
 
 Route::get('/checkout', function () {
     //view checkout ("Kayak Done Checkout atau gimana")

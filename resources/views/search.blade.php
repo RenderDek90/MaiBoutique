@@ -31,4 +31,5 @@
             </div>
         @endforeach
     </section>
+    <div class="flex flex-row justify-center p-5">{{$item->withQueryString()->links()}}</div>
 @endsection

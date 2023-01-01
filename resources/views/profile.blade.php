@@ -19,7 +19,7 @@
                         class="shadow shadow-gray-400 hover:bg-gray-900 p-2 rounded hover:text-white border-2 m-1 ">Edit
                         Profile</a>
                 @endif
-                <a href="/edit_password/{{ Auth::user()->id }}"
+                <a href="/update_password/{{ Auth::user()->id }}"
                     class="shadow shadow-gray-400 hover:bg-gray-900 p-2 m-1 rounded hover:text-white border-2">Edit
                     Password</a>
             </div>
