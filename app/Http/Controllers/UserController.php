@@ -97,16 +97,24 @@ class UserController extends Controller
         $new_pass = $req->validate(['password' => 'required|min:5|max:30']);
 
         $user->password = bcrypt($new_pass['password']);
+        $user->save();
 
-        return redirect('/signin');
+        return redirect('/sign-in');
     }
 
 
-    // public function update_prof($id){
-    //     $user = User::where($id);
+    public function view_update_prof($id){
+        $user = User::where($id);
 
-    //     return view('update', ['user' => $user]);
-    // }
+        return view('update_profile', ['user' => $user]);
+    }
+
+
+    public function update_prof($id){
+        $user = User::where($id);
+
+        return view('update_profile', ['user' => $user]);
+    }
 
     // public function getData(Request $req)
     // {

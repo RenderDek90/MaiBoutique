@@ -70,7 +70,8 @@ Route::get('/edit_cart/id', function () {
 
 
 //Update
-Route::post('/update_profile/{id}', [UserController::class, 'update_prof']);
+Route::post('/update_profile/{id}', [UserController::class, 'view_update_prof']);
+Route::get('/update_profile/{id}', [UserController::class, 'update_prof']);
 
 
 // Route::get('/password_update/{id}', function () {

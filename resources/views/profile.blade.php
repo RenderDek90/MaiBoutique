@@ -15,7 +15,7 @@
             </div>
             <div class="flex w-100  py-5 flex-col items-baseline">
                 @if (Auth::user()->role == 'Member')
-                    <a href="/update/{{ Auth::user()->id }}"
+                    <a href="/update_profile/{{ Auth::user()->id }}"
                         class="shadow shadow-gray-400 hover:bg-gray-900 p-2 rounded hover:text-white border-2 m-1 ">Edit
                         Profile</a>
                 @endif

@@ -40,9 +40,7 @@
                 @endif
                 <li><a href="/sign-out" class="text-gray-900">Sign Out</a></li>
             @else
-                <li>
-                    <div class="text-gray-900 text-xl underline">MaiBoutique</div>
-                </li>
+                <li class="text-gray-900 text-xl underline">MaiBoutique</li>
                 <li><a href="/sign-in" class="text-gray-900">Sign In</a></li>
             @endauth
         </ul>
