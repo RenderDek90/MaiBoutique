@@ -30,22 +30,26 @@
                     <div class="text-slate-300  flex items-center justify-between flex-row gap-2">
                         <a href="/home" class="hover:text-slate-400">Home</a>
                         <a href="/search" class="hover:text-slate-400">Search</a>
-                        <a href="/cart" class="hover:text-slate-400">Cart</a>
-                        <a href="/history" class="hover:text-slate-400">History</a>
+                        @if (Auth::user()->role == 'Member')
+                            <a href="/cart" class="hover:text-slate-400">Cart</a>
+                            <a href="/history" class="hover:text-slate-400">History</a>
+                        @endif
                         <a href="/profile" class="hover:text-slate-400">Profile</a>
                     </div>
                 </div>
-                @if (Auth::user()->role == 'Admin')
-                <div class="flex flex-row gap-2">
-                        <li><a href="/add-item" class="text-gray-900 bg-slate-200 hover:bg-gray-800 hover:text-white p-2 rounded">Add Items</a></li>
-                        <li><a href="/sign-out" class="text-gray-900 bg-slate-200 hover:bg-gray-800 hover:text-white p-2 rounded">Sign Out</a></li>
-                </div>
-                @elseif (Auth::user()->role == 'Member')
-                    <li><a href="/sign-out" class="text-gray-900">Sign Out</a></li>
-                @endif
+                    <div class="flex flex-row gap-2">
+                        @if (Auth::user()->role == 'Admin')
+                        <li><a href="/add-item"
+                                class="text-gray-900 bg-slate-200 hover:bg-gray-800 hover:text-white p-2 rounded">Add
+                                Items</a></li>
+                        @endif
+                        <li><a href="/sign-out"
+                                class="text-gray-900 bg-slate-200 hover:bg-gray-800 hover:text-white p-2 rounded">Sign
+                                Out</a></li>
+                    </div>
             @else
                 <li class="text-gray-900 text-xl underline">MaiBoutique</li>
-                <li><a href="/sign-in" class="text-gray-900">Sign In</a></li>
+                <li><a href="/sign-in" class="text-gray-900 bg-slate-200 hover:bg-gray-800 hover:text-white p-2 rounded">Sign In</a></li>
             @endauth
         </ul>
     </nav>

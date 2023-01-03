@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\CartDetail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -63,7 +62,7 @@ class UserController extends Controller
                 'password' => $req->password
             ];
 
-        if($req->remember){
+        if ($req->remember) {
             Cookie::queue('mycookie', $req->email, 5);
         }
         if (Auth::attempt($credentials, true)) {
@@ -87,52 +86,49 @@ class UserController extends Controller
     }
 
 
-    // Untuk view Blade
-    public function viewUpPassPage($id){
-        $user = User::find($id);
-
-        return view('forgot_password', ['user' => $user]);
+    public function updatePasswordPage()
+    {
+        $user = Auth::user();
+        return view('update_password', ['user' => $user]);
     }
 
     //Update Password masi eror
-    public function update_password(Request $req){
-
-         $req->validate([
-            'old_password' => 'required|min:5|max:30',
-            'new_password' => 'required|min:5|max:30',
+    public function updatePassword(Request $req)
+    {
+        $req->validate([
+            'old_password' => 'required|min:5|max:20',
+            'new_password' => 'required|min:5|max:20',
         ]);
 
-
         if (Hash::check($req->old_password, Auth::user()->password)) {
-            if(!Hash::check($req->new_password, Auth::user()->password)){
+            if (!Hash::check($req->new_password, Auth::user()->password)) {
 
                 $user = User::find(Auth::user()->id);
                 $user->update([
                     'password' => bcrypt($req->new_password)
                 ]);
                 $user->save();
+                Auth::logout();
                 return redirect('/sign-in')->with('message', 'Change Password successfully');
-
-            }else{
+            } else {
                 return back()->with("message", "Old and New Password cannot be the same!");
             }
-        }else{
+        } else {
             return back()->with("message", "Old password doesn't match!");
         }
     }
 
-
-    public function view_update_prof($id){
-        $user = User::find($id);
-
+    public function updateProfilePage()
+    {
+        $user = Auth::user();
         return view('update_profile', ['user' => $user]);
     }
 
-
-    public function update_prof(Request $req){
+    public function updateProfile(Request $req)
+    {
         $user = User::find(Auth::user()->id);
 
-        $this->validate($req,[
+        $this->validate($req, [
             'username' => 'required|min:5|max:20|unique:users,username',
             'email' => 'required|email|unique:users,email',
             'address' => 'required|min:5',

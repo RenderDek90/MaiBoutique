@@ -108,5 +108,16 @@ class DatabaseSeeder extends Seeder
             ]
         ];
         DB::table('items')->insert($items);
+        DB::table('items')->insert($items);
+        DB::table('items')->insert($items);
+        DB::table('items')->insert($items);
+        DB::table('items')->insert($items);
+        DB::table('items')->insert($items);
+        DB::table('items')->insert($items);
+        DB::table('items')->insert($items);
+        DB::table('items')->insert($items);
+        DB::table('items')->insert($items);
+        DB::table('items')->insert($items);
+        DB::table('items')->insert($items);
     }
 }

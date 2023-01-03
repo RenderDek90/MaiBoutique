@@ -52,9 +52,9 @@ Route::get('/cart', [CartController::class, 'viewActiveCart']);
 // profile
 Route::get('/profile', [UserController::class, 'viewProfile']);
 
-//Forgot Password
-Route::get('/update_password/{id}', [UserController::class, 'viewUpPassPage']);
-Route::post('/update_password/{id}', [UserController::class, 'update_password']);
+// Update Password
+Route::get('/update-password', [UserController::class, 'updatePasswordPage']);
+Route::post('/update-password', [UserController::class, 'updatePassword']);
 // Route::get('/edit_password/{id}', function ($id){
 //     return redirect()->action([UserController::class, 'viewUpPassPage']);
 // })->where('id', Auth::user()->id);
@@ -70,8 +70,8 @@ Route::get('/edit_cart/id', function () {
 
 
 //Update profile
-Route::get('/update_profile/{id}', [UserController::class, 'view_update_prof']);
-Route::post('/update_profile/{id}', [UserController::class, 'update_prof']);
+Route::get('/update-profile', [UserController::class, 'updateProfilePage']);
+Route::post('/update-profile', [UserController::class, 'updateProfile']);
 
 
 // Route::get('/password_update/{id}', function () {

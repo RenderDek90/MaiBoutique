@@ -37,7 +37,7 @@
                 {{-- <p class="font-bold">Total Price : Rp.200000</p> --}}
             </div>
             <div class="m-10 flex row justify-end">
-                <a href="" class="bg-blue-700 text-white p-2 rounded">Check Out {{ $total_qty }}</a>
+                <a href="" class="bg-blue-700 text-white p-2 rounded">Check Out ({{ $total_qty }})</a>
                 {{-- <a href="/checkout" class="bg-blue-700 text-white p-2 rounded">Check Out (4)</a> --}}
             </div>
         @endif

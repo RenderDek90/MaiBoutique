@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CartDetail;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
-
-// use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
 
     public function viewItems()
     {
-        // $item = Item::all();
-        $item = Item::paginate(3);
+        $item = Item::paginate(8);
 
         return view('home', ['item' => $item]);
     }
@@ -61,7 +57,7 @@ class ItemController extends Controller
     {
         $item = Item::find($id);
         // delete file local masi ga bisa
-        // Storage::delete($item->image);
+        // Storage::delete('public\storage\images\durian.png');
         $item->delete();
         return redirect('/home');
     }
@@ -69,7 +65,7 @@ class ItemController extends Controller
     public function searchItem(Request $req)
     {
         $search = $req->search;
-        $item = Item::where('name', 'LIKE', "%$search%")->paginate(8)->appends(['search' => $search]);
+        $item = Item::where('name', 'LIKE', "%$search%")->paginate(8);
         return view('search', ['item' => $item]);
     }
 }
