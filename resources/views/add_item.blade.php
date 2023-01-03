@@ -6,7 +6,7 @@
             class="bg-slate-100 flex flex-col gap-y-3 rounded-2xl p-10 w-[500px]">
             @csrf
 
-            @if ($errors->has('image'))
+            @if ($errors->has('image'))d
             <span class="text-red-800">{{ $errors->first('image') }}</span>
             @endif
             <label for="image">Clothes Image</label>

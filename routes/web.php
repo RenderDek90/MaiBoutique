@@ -31,51 +31,44 @@ Route::get('/sign-out', [UserController::class, 'signout']);
 Route::get('/sign-up', [UserController::class, 'signupPage']);
 Route::post('/sign-up', [UserController::class, 'signup']);
 
+//Admin and Member Middleware
+
 // home
-Route::get('/home', [ItemController::class, 'viewItems']);
-// item details
-Route::get('/item/{id}', [ItemController::class, 'viewItemDetail']);
-// add item (admin)
-Route::get('/add-item', [ItemController::class, 'addItemPage']);
-Route::post('/add-item', [ItemController::class, 'addItem']);
-// delete item (admin)
-Route::get('/delete/{id}', [ItemController::class, 'deleteItem']);
-
+Route::get('/home', [ItemController::class, 'viewItems'])->middleware('adminandmember');
 // search
-Route::get('/search', [ItemController::class, 'searchItem']);
-
-// view active cart
-Route::get('/cart', [CartController::class, 'viewActiveCart']);
-// add item to cart
-Route::post('/addToCart', [CartController::class, 'add_to_cart']);
-
+Route::get('/search', [ItemController::class, 'searchItem'])->middleware('adminandmember');
 // profile
-Route::get('/profile', [UserController::class, 'viewProfile']);
-
+Route::get('/profile', [UserController::class, 'viewProfile'])->middleware('adminandmember');
 // Update Password
-Route::get('/update-password', [UserController::class, 'updatePasswordPage']);
-Route::post('/update-password', [UserController::class, 'updatePassword']);
-// Route::get('/edit_password/{id}', function ($id){
-//     return redirect()->action([UserController::class, 'viewUpPassPage']);
-// })->where('id', Auth::user()->id);
+Route::get('/update-password', [UserController::class, 'updatePasswordPage'])->middleware('adminandmember');
+Route::post('/update-password', [UserController::class, 'updatePassword'])->middleware('adminandmember');
+// item details
+Route::get('/item/{id}', [ItemController::class, 'viewItemDetail'])->middleware('adminandmember');
+
+//Admin Middleware
+// add item (admin)
+Route::get('/add-item', [ItemController::class, 'addItemPage'])->middleware('admin');
+Route::post('/add-item', [ItemController::class, 'addItem'])->middleware('admin');
+// delete item (admin)
+Route::get('/delete/{id}', [ItemController::class, 'deleteItem'])->middleware('admin');
+
+//Member Middleware
+// view active cart
+Route::get('/cart', [CartController::class, 'viewActiveCart'])->middleware('member');
+// add item to cart
+Route::post('/addToCart', [CartController::class, 'add_to_cart'])->middleware('member');
 
 Route::get('/checkout', function () {
     //view checkout ("Kayak Done Checkout atau gimana")
-});
+})->middleware('member');
 
 Route::get('/edit_cart/id', function () {
     // harusnya ada Id, untuk tau Item yang mana untuk di Update
     return view('edit_cart');
-});
-
+})->middleware('member');
 
 //Update profile
-Route::get('/update-profile', [UserController::class, 'updateProfilePage']);
-Route::post('/update-profile', [UserController::class, 'updateProfile']);
+Route::get('/update-profile', [UserController::class, 'updateProfilePage'])->middleware('member');
+Route::post('/update-profile', [UserController::class, 'updateProfile'])->middleware('member');
 
-
-// Route::get('/password_update/{id}', function () {
-//     return view('/update');
-// });
-
-Route::get('/history', [CartController::class, 'viewTransactionHistory']);
+Route::get('/history', [CartController::class, 'viewTransactionHistory'])->middleware('member');
