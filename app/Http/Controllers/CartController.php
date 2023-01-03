@@ -102,10 +102,10 @@ class CartController extends Controller
     // $item->save();
     // }
 
-    // public function viewTransactionHistory()
-    // {
-    //     $user = User::find('id');
-    //     $cart = Cart::all()->where('id', $user);
-    //     return view('transaction_history', ['cart' => $cart]);
-    // }
+    public function viewTransactionHistory()
+    {
+        $user = User::find('id');
+        $cart = Cart::all()->where('id', $user);
+        return view('transaction_history', ['cart' => $cart]);
+    }
 }
