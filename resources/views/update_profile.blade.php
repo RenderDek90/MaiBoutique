@@ -6,7 +6,6 @@
         <form enctype="multipart/form-data" action="/update_profile/{{$user->id}}" method="post"
             class="bg-slate-100 flex flex-col gap-y-3 rounded-2xl p-10 w-[500px]">
 
-
             {{-- Untuk Update Profile sepertinya blm kelar, gw masih bingung di bagian controller yang bakal di pake untuk update profile --}}
             @csrf
             @if ($errors->has('username'))
@@ -39,8 +38,7 @@
             <input class="bg-green-500 border-0 hover:bg-green-700 text-white border p-2 rounded w-[100%] mt-2"
                 type="submit" value="Save Update">
 
-            <input class="border-button p-2 rounded border-red-500 w-[100px] hover:bg-red-500 text-red-500 hover:text-white"
-                type="submit" value="Back">
+            <a class="border-button p-2 rounded border-red-500 w-[100px] hover:bg-red-500 text-red-500 hover:text-white">Back </a>
         </form>
 
     </section>

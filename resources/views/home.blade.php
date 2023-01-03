@@ -1,6 +1,7 @@
 @extends('layouts.navbar')
 
 @section('container')
+
     <div class="w-full bg-slate-100">
         <p class="text-center text-3xl font-medium p-10">Find your best Clothes Here!!</p>
         <section class="flex flex-wrap p-10 justify-around">

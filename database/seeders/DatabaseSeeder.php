@@ -42,6 +42,15 @@ class DatabaseSeeder extends Seeder
                 'phone_number' => '0815151515',
                 'address' => 'jlMember',
                 'created_at' => Carbon::now()
+            ],
+            [
+                'email' => 'testing@gmail.com',
+                'username' => 'testing',
+                'password' => bcrypt('kopkop9090'),
+                'role' => 'Member',
+                'phone_number' => '12345678912',
+                'address' => 'Binus Alsut',
+                'created_at' => Carbon::now()
             ]
         ];
         DB::table('users')->insert($users);

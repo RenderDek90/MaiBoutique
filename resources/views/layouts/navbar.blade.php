@@ -37,8 +37,8 @@
                 </div>
                 @if (Auth::user()->role == 'Admin')
                 <div class="flex flex-row gap-2">
-                        <li><a href="/add-item" class="text-gray-900 bg-slate-200 hover:bg-gray-900 hover:text-white p-2 rounded">Add Items</a></li>
-                        <li><a href="/sign-out" class="text-gray-900 bg-slate-200 hover:bg-gray-900 hover:text-white p-2 rounded">Sign Out</a></li>
+                        <li><a href="/add-item" class="text-gray-900 bg-slate-200 hover:bg-gray-800 hover:text-white p-2 rounded">Add Items</a></li>
+                        <li><a href="/sign-out" class="text-gray-900 bg-slate-200 hover:bg-gray-800 hover:text-white p-2 rounded">Sign Out</a></li>
                 </div>
                 @elseif (Auth::user()->role == 'Member')
                     <li><a href="/sign-out" class="text-gray-900">Sign Out</a></li>

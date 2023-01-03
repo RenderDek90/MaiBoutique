@@ -62,6 +62,7 @@ class UserController extends Controller
                 'email' => $req->email,
                 'password' => $req->password
             ];
+
         if($req->remember){
             Cookie::queue('mycookie', $req->email, 5);
         }
@@ -69,7 +70,8 @@ class UserController extends Controller
             Session::put('mysession', $credentials);
             return redirect('/home');
         }
-        return redirect('/sign-in')->with('message', 'Please try again!');
+
+        return redirect('/sign-in')->with('message', 'Email or Password is incorrect');
     }
 
     public function signout()
@@ -94,31 +96,57 @@ class UserController extends Controller
 
     //Update Password masi eror
     public function update_password(Request $req){
-        $user = User::find(Auth::user()->id);
 
-        $this->validate($req,
-        ['new_password' => 'required|min:5|max:30|same:old_password',
-        'old_password' => 'required'
+         $req->validate([
+            'old_password' => 'required|min:5|max:30',
+            'new_password' => 'required|min:5|max:30',
         ]);
 
-        $user->password = Hash::make( 'new_password', 'old_password');
-        $user->save();
 
-        return redirect('/sign-in');
+        if (Hash::check($req->old_password, Auth::user()->password)) {
+            if(!Hash::check($req->new_password, Auth::user()->password)){
+
+                $user = User::find(Auth::user()->id);
+                $user->update([
+                    'password' => bcrypt($req->new_password)
+                ]);
+                $user->save();
+                return redirect('/sign-in')->with('message', 'Change Password successfully');
+
+            }else{
+                return back()->with("message", "Old and New Password cannot be the same!");
+            }
+        }else{
+            return back()->with("message", "Old password doesn't match!");
+        }
     }
 
 
     public function view_update_prof($id){
-        $user = User::where($id);
+        $user = User::find($id);
 
         return view('update_profile', ['user' => $user]);
     }
 
 
-    public function update_prof($id){
-        $user = User::where($id);
+    public function update_prof(Request $req){
+        $user = User::find(Auth::user()->id);
 
-        return view('update_profile', ['user' => $user]);
+        $this->validate($req,[
+            'username' => 'required|min:5|max:20|unique:users,username',
+            'email' => 'required|email|unique:users,email',
+            'address' => 'required|min:5',
+            'phone_number' => 'required|numeric||digits_between:10,13'
+        ]);
+
+        $user->update([
+            'username' => $req->username,
+            'email' => $req->email,
+            'address' => $req->address,
+            'phone_number' => $req->phone_number
+        ]);
+
+        return redirect('/home')->with("Status", "Successfully change data!");
     }
 
     // public function getData(Request $req)

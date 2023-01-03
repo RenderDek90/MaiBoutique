@@ -10,33 +10,27 @@
                 <p class="text-center font-medium p-4 text-gray-900 text-3xl">Sign In</p>
 
                 @if ($message = Session::get('message'))
-                    <div>
-                        {{ $message }}
-                    </div>
+                    <div class="text-white bg-red-500 rounded p-2 mb-2">{{ $message }}</div>
                 @endif
 
                 <form action="/sign-in" method="POST" enctype="multipart/form-data"
                     class="bg-slate-100 flex flex-col gap-y-3 rounded-2xl p-2">
                     @csrf
                     @if ($errors->has('email'))
-                        <span class="text-red-800">{{ $errors->first('email') }}</span>
+                        <span class="text-red-500">{{ $errors->first('email') }}</span>
                     @endif
                     <label for="email" class="px-2">Email</label>
                     <input class="p-2 m-2 rounded border-form w-[250px]" type="text" name="email" placeholder="example@gmail.com" value="{{Cookie::get('mycookie') !== null ? Cookie::get('mycookie') : "" }}">
 
                     @if ($errors->has('password'))
-                        <span class="text-red-800">{{ $errors->first('password') }}</span>
+                        <span class="text-red-500">{{ $errors->first('password') }}</span>
                     @endif
                     <label for="email" class="px-2">Passwords</label>
                     <input type="password" class="p-2 m-2 rounded border-form w-[250px]" name="password"
                         placeholder="5-20 Characters">
 
-                    {{-- Password Reset gatau harus gini atau gimana --}}
-                    @if (Route::has('password.request'))
-                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                            Forgot password?
-                        </a>
-                    @endif
+                    {{-- <a class="text-sm mx-2 hover:text-blue-500 underline" href="/forgot_password">Forgot password?</a> --}}
+
                     <div class="items-end">
                         <input type="checkbox" name="remember" id="remember" checked={{Cookie::get('mycookie') !== null }}>
                         <label for="remember_name">Remember me!</label>

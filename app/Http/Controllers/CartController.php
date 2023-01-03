@@ -39,6 +39,11 @@ class CartController extends Controller
             $cart_detail->created_at = Carbon::now();
             $cart_detail->save();
         }
+
+        $cart = Cart::find('cart_id', $active_cart);
+        $cart->stock = $cart->stock - $req->quantity;
+        $cart->save();
+
         return redirect('/cart');
     }
 

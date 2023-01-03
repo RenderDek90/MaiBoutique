@@ -11,17 +11,24 @@
 
             {{-- Untuk Update Profile sepertinya blm kelar, gw masih bingung di bagian controller yang bakal di pake untuk update profile --}}
             @csrf
-            @if ($errors->has('password'))
-            <span class="text-red-800">{{ $errors->first('password') }}</span>
-            @endif
-            <label for="username">Old Password</label>
-            <input class="p-2 m-2 rounded border-form" type="password" name="password" placeholder="Old Password">
 
-            @if ($errors->has('password'))
-            <span class="text-red-800">{{ $errors->first('password') }}</span>
+            @if ($message = Session::get('message'))
+                    <div class="text-center bg-red-900 text-white">
+                        {{ $message }}
+                    </div>
             @endif
-            <label for="username">Password</label>
-            <input class="p-2 m-2 rounded border-form" type="password" name="password" placeholder="New Password">
+
+            @if ($errors->has('old_password'))
+            <span class="text-red-800">{{ $errors->first('old_password') }}</span>
+            @endif
+            <label for="old_password">Old Password</label>
+            <input class="p-2 m-2 rounded border-form" type="password" name="old_password" placeholder="Old Password">
+
+            @if ($errors->has('new_password'))
+            <span class="text-red-800">{{ $errors->first('new_password') }}</span>
+            @endif
+            <label for="new_password">New Password</label>
+            <input class="p-2 m-2 rounded border-form" type="password" name="new_password" placeholder="New Password">
 
             <input class="bg-green-500 border-0 hover:bg-green-700 text-white border p-2 rounded w-[100%] mt-2"
                 type="submit" value="Save Update">
