@@ -5,7 +5,7 @@
 
         <p class="text-medium text-xl mt-3 p-3 text-slate-400">Hi {{ $user->username }}</p>
         <p class="text-medium text-2xl mt-3 p-3 bg-gray-900 rounded-xl text-white">Update Password</p>
-        <form enctype="multipart/form-data" action="/update-password" method="post"
+        <form enctype="multipart/form-data" action="/edit-password" method="post"
             class="bg-slate-100 flex flex-col gap-y-3 rounded-2xl p-10 w-[500px]">
 
             @csrf

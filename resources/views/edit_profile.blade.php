@@ -3,7 +3,7 @@
 @section('container')
     <section class="grid justify-center bg-slate-100 ">
         <p class="text-medium text-2xl mt-3 p-3 bg-gray-900 rounded-xl text-white">Update Profile</p>
-        <form enctype="multipart/form-data" action="/update-profile" method="post"
+        <form enctype="multipart/form-data" action="/edit-profile" method="post"
             class="bg-slate-100 flex flex-col gap-y-3 rounded-2xl p-10 w-[500px]">
 
             @csrf

@@ -39,9 +39,9 @@ Route::get('/home', [ItemController::class, 'viewItems'])->middleware('adminandm
 Route::get('/search', [ItemController::class, 'searchItem'])->middleware('adminandmember');
 // profile
 Route::get('/profile', [UserController::class, 'viewProfile'])->middleware('adminandmember');
-// Update Password
-Route::get('/update-password', [UserController::class, 'updatePasswordPage'])->middleware('adminandmember');
-Route::post('/update-password', [UserController::class, 'updatePassword'])->middleware('adminandmember');
+// edit password
+Route::get('/edit-password', [UserController::class, 'editPasswordPage'])->middleware('adminandmember');
+Route::post('/edit-password', [UserController::class, 'editPassword'])->middleware('adminandmember');
 // item details
 Route::get('/item/{id}', [ItemController::class, 'viewItemDetail'])->middleware('adminandmember');
 
@@ -67,8 +67,8 @@ Route::get('/checkout', function () {
     //view checkout ("Kayak Done Checkout atau gimana")
 })->middleware('member');
 
-//Update profile
-Route::get('/update-profile', [UserController::class, 'updateProfilePage'])->middleware('member');
-Route::post('/update-profile', [UserController::class, 'updateProfile'])->middleware('member');
+// edit profile
+Route::get('/edit-profile', [UserController::class, 'editProfilePage'])->middleware('member');
+Route::post('/edit-profile', [UserController::class, 'editProfile'])->middleware('member');
 
 Route::get('/history', [CartController::class, 'viewTransactionHistory'])->middleware('member');

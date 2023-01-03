@@ -85,15 +85,13 @@ class UserController extends Controller
         return view('profile', ['user' => $user]);
     }
 
-
-    public function updatePasswordPage()
+    public function editPasswordPage()
     {
         $user = Auth::user();
-        return view('update_password', ['user' => $user]);
+        return view('edit_password', ['user' => $user]);
     }
 
-    //Update Password masi eror
-    public function updatePassword(Request $req)
+    public function editPassword(Request $req)
     {
         $req->validate([
             'old_password' => 'required|min:5|max:20',
@@ -118,13 +116,13 @@ class UserController extends Controller
         }
     }
 
-    public function updateProfilePage()
+    public function editProfilePage()
     {
         $user = Auth::user();
-        return view('update_profile', ['user' => $user]);
+        return view('edit_profile', ['user' => $user]);
     }
 
-    public function updateProfile(Request $req)
+    public function editProfile(Request $req)
     {
         $user = User::find(Auth::user()->id);
 
