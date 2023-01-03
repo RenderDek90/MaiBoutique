@@ -10,14 +10,14 @@
                         <p class="font-bold text-2xl">{{ $item->name }}</p>
                         <p class="font-light text-2xl text-gray-500">Rp.{{ $item->price }}</p>
                         <hr>
-                        <p class="font-bold">Product Detail</p>
+                        <p class="font-bold mt-5">Product Detail</p>
                         <p>{{ $item->description }}</p>
                         @auth
                             @if (Auth::user()->role == 'Member')
                                 <form action="/addToCart" method="POST" class="flex flex-col">
                                     @csrf
                                     <input type="hidden" name="item_id" value="{{ $item->id }}">
-                                    <label for="quantity_product" class="font-bold">Quantity:</label>
+                                    <label for="quantity_product" class="font-bold mt-3">Quantity:</label>
                                     <div class="flex flex-row justify-between">
                                         @if ($qty_in_cart > 0)
                                             <select name="quantity" id="quantity" class="mx-2 border-1 w-[100px]">
@@ -30,28 +30,25 @@
                                                 class="bg-green-500 border-0 hover:bg-green-700 text-white border p-2 rounded w-[50%] h-[2.5em] hover:cursor-pointer"
                                                 type="submit" value="Add to Cart">
                                         @else
-                                            {{-- <select name="quantity" id="quantity" class="mx-2 border-1 w-[100px]">
-                                                @for ($i = 1; $i <= $item->stock - $qty_in_cart; $i++)
-                                                    <option value="{{ $i }}" class="">{{ $i }}
-                                                    </option>
-                                                @endfor
+                                            <select name="quantity" id="quantity" class="opacity-50 border-0 mx-2 border-1 w-[100px] select-none pointer-event-none" disabled>
+                                                <option>0</option>
                                             </select>
                                             <input
-                                                class="bg-green-500 border-0 hover:bg-green-700 text-white border p-2 rounded w-[50%] h-[2.5em] hover:cursor-pointer"
-                                                type="submit" value="Add to Cart"> --}}
+                                                class="bg-slate-400 opacity-50 border-0 text-white border p-2 rounded w-[50%] h-[2.5em]"
+                                                type="reset" value="Add to Cart">
                                         @endif
-
                                     </div>
-                                </form>
                             @elseif (Auth::user()->role == 'Admin')
                                 <div
-                                    class="bg-red-500 border-0 hover:bg-red-700 text-white border p-2 rounded w-[50%] h-[2.5em] hover:cursor-pointer">
+                                    class="bg-red-500 border-0 hover:bg-red-700 text-white border p-2 rounded w-[100%] h-[2.5em] hover:cursor-pointer m-2">
                                     <a href="/delete/{{ $item->id }}">Delete Item</a>
                                 </div>
                             @endif
-                            <a href="{{ url()->previous() }}"
-                                class="border-button border-red-500 p-2 rounded  w-[100px] hover:bg-red-500 text-red-500 hover:text-white mt-2">Back
-                            </a>
+                        </form>
+                            <div class="p-2 border-red-500 rounded w-[20%] hover:bg-red-500 text-red-500 hover:text-white mt-2 mx-2 text-center">
+                                <a href="{{ url()->previous() }}" class="border-button">Back
+                                </a>
+                            </div>
                         @endauth
 
                     </div>

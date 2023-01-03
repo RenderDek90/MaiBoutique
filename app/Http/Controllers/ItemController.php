@@ -27,14 +27,16 @@ class ItemController extends Controller
         // find cart
         $active_cart = Cart::where('user_id', Auth::user()->id)->where('status', 'not checked out')->first();
         // kalo udah ada item yang sama di cart
-        if (CartDetail::where('cart_id', $active_cart->id)->where('item_id', $id)->first()) {
-            $cart_detail = CartDetail::where('cart_id', $active_cart->id)->where('item_id', $id)->first();
-            $qty_in_cart = $cart_detail->quantity;
-        }
-        // kalo belum ada item yang sama di cart
-        else {
-            $qty_in_cart = 0;
-        }
+        // if (CartDetail::where('cart_id', $active_cart->id)->where('item_id', $id)->first()) {
+        //     $cart_detail = CartDetail::where('cart_id', $active_cart->id)->where('item_id', $id)->first();
+        //     $qty_in_cart = $cart_detail->quantity;
+        // }
+        // // kalo belum ada item yang sama di cart
+        // else {
+        //     $qty_in_cart = 0;
+        // }
+
+        $qty_in_cart = 0;
         return view('item_detail', ['item' => $item, 'qty_in_cart' => $qty_in_cart]);
     }
 
