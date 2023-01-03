@@ -19,14 +19,28 @@
                                     <input type="hidden" name="item_id" value="{{ $item->id }}">
                                     <label for="quantity_product" class="font-bold">Quantity:</label>
                                     <div class="flex flex-row justify-between">
-                                        <select name="quantity" id="quantity" class="mx-2 border-1 w-[100px]">
-                                            @for ($i = 1; $i <= $item->stock; $i++)
-                                                <option value="{{ $i }}" class="">{{ $i }}</option>
-                                            @endfor
-                                        </select>
-                                        <input
-                                            class="bg-green-500 border-0 hover:bg-green-700 text-white border p-2 rounded w-[50%] h-[2.5em] hover:cursor-pointer"
-                                            type="submit" value="Add to Cart">
+                                        @if ($qty_in_cart > 0)
+                                            <select name="quantity" id="quantity" class="mx-2 border-1 w-[100px]">
+                                                @for ($i = 1; $i <= $item->stock - $qty_in_cart; $i++)
+                                                    <option value="{{ $i }}" class="">{{ $i }}
+                                                    </option>
+                                                @endfor
+                                            </select>
+                                            <input
+                                                class="bg-green-500 border-0 hover:bg-green-700 text-white border p-2 rounded w-[50%] h-[2.5em] hover:cursor-pointer"
+                                                type="submit" value="Add to Cart">
+                                        @else
+                                            {{-- <select name="quantity" id="quantity" class="mx-2 border-1 w-[100px]">
+                                                @for ($i = 1; $i <= $item->stock - $qty_in_cart; $i++)
+                                                    <option value="{{ $i }}" class="">{{ $i }}
+                                                    </option>
+                                                @endfor
+                                            </select>
+                                            <input
+                                                class="bg-green-500 border-0 hover:bg-green-700 text-white border p-2 rounded w-[50%] h-[2.5em] hover:cursor-pointer"
+                                                type="submit" value="Add to Cart"> --}}
+                                        @endif
+
                                     </div>
                                 </form>
                             @elseif (Auth::user()->role == 'Admin')

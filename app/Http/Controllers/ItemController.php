@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\CartDetail;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ItemController extends Controller
@@ -20,7 +23,19 @@ class ItemController extends Controller
     public function viewItemDetail($id)
     {
         $item = Item::find($id);
-        return view('item_detail', ['item' => $item]);
+
+        // find cart
+        $active_cart = Cart::where('user_id', Auth::user()->id)->where('status', 'not checked out')->first();
+        // kalo udah ada item yang sama di cart
+        if (CartDetail::where('cart_id', $active_cart->id)->where('item_id', $id)->first()) {
+            $cart_detail = CartDetail::where('cart_id', $active_cart->id)->where('item_id', $id)->first();
+            $qty_in_cart = $cart_detail->quantity;
+        }
+        // kalo belum ada item yang sama di cart
+        else {
+            $qty_in_cart = 0;
+        }
+        return view('item_detail', ['item' => $item, 'qty_in_cart' => $qty_in_cart]);
     }
 
     public function addItemPage()
