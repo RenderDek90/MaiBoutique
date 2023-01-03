@@ -1,7 +1,7 @@
 @extends('layouts.navbar')
 
 @section('container')
-    <div class="flex flex-col justify-center items-center h-screen w-full bg-gradient-to-r from-slate-100 to-gray-300 ">
+    <div class="flex flex-col justify-center items-center h-screen w-full bg-slate-100 ">
         <div>
             <div class="bg-slate-100 px-20 py-5 block shadow-lg shadow-gray-400 text-center rounded-lg">
                 <p class="font-medium text-xl">My Profile</p>

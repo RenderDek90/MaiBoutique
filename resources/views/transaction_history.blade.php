@@ -1,11 +1,14 @@
 @extends('layouts.navbar')
 
 @section('container')
+<div class="w-full bg-slate-100">
 @auth
     @if ($cart->isEmpty())
-    <div class="text-center font-bold text-slate-400 p-10 text-3xl">
-            <h1>Hi {{Auth::user()->username}}</h1>
-            <h1>You Haven't Bought Anything :')</h1>
+    <div class="flex items-center text-center justify-center font-bold text-slate-400 p-10 text-3xl h-screen w-full">
+            <div>
+                <h1>Hi {{Auth::user()->username}}</h1>
+                <h1>You Haven't Bought Anything :')</h1>
+            </div>
     </div>
     @else
         <h1>Check What You've Bought!</h1>
@@ -19,6 +22,6 @@
         @endforeach
     @endif
 
-
+</div>
 @endsection
 @endauth

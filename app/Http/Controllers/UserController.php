@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -94,9 +95,13 @@ class UserController extends Controller
     //Update Password masi eror
     public function update_password(Request $req){
         $user = User::find(Auth::user()->id);
-        $new_pass = $req->validate(['password' => 'required|min:5|max:30']);
 
-        $user->password = bcrypt($new_pass['password']);
+        $this->validate($req,
+        ['new_password' => 'required|min:5|max:30|same:old_password',
+        'old_password' => 'required'
+        ]);
+
+        $user->password = Hash::make( 'new_password', 'old_password');
         $user->save();
 
         return redirect('/sign-in');

@@ -14,6 +14,12 @@
             @if ($errors->has('password'))
             <span class="text-red-800">{{ $errors->first('password') }}</span>
             @endif
+            <label for="username">Old Password</label>
+            <input class="p-2 m-2 rounded border-form" type="password" name="password" placeholder="Old Password">
+
+            @if ($errors->has('password'))
+            <span class="text-red-800">{{ $errors->first('password') }}</span>
+            @endif
             <label for="username">Password</label>
             <input class="p-2 m-2 rounded border-form" type="password" name="password" placeholder="New Password">
 
