@@ -19,7 +19,7 @@
                                     <input type="hidden" name="item_id" value="{{ $item->id }}">
                                     <label for="quantity_product" class="font-bold mt-3">Quantity:</label>
                                     <div class="flex flex-row justify-between">
-                                        @if ($qty_in_cart > 0)
+                                        @if ($item->stock - $qty_in_cart > 0)
                                             <select name="quantity" id="quantity" class="mx-2 border-1 w-[100px]">
                                                 @for ($i = 1; $i <= $item->stock - $qty_in_cart; $i++)
                                                     <option value="{{ $i }}" class="">{{ $i }}
