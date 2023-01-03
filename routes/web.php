@@ -56,15 +56,15 @@ Route::get('/delete/{id}', [ItemController::class, 'deleteItem'])->middleware('a
 // view active cart
 Route::get('/cart', [CartController::class, 'viewActiveCart'])->middleware('member');
 // add item to cart
-Route::post('/addToCart', [CartController::class, 'add_to_cart'])->middleware('member');
+Route::post('/add-to-cart', [CartController::class, 'addToCart'])->middleware('member');
+// remove item from cart
+Route::get('/remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->middleware('member');
+// edit cart
+Route::get('/edit-cart/{id}', [CartController::class, 'editCartPage'])->middleware('member');
+Route::post('/edit-cart', [CartController::class, 'editCart'])->middleware('member');
 
 Route::get('/checkout', function () {
     //view checkout ("Kayak Done Checkout atau gimana")
-})->middleware('member');
-
-Route::get('/edit_cart/id', function () {
-    // harusnya ada Id, untuk tau Item yang mana untuk di Update
-    return view('edit_cart');
 })->middleware('member');
 
 //Update profile

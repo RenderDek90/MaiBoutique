@@ -12,14 +12,19 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    public function viewTransactionHistory()
+    public function viewActiveCart()
     {
-        $user = User::find('id');
-        $cart = Cart::all()->where('id', $user);
-        return view('transaction_history', ['cart' => $cart]);
+        $active_cart = Cart::where('user_id', Auth::user()->id)->where('status', 'not checked out')->first();
+
+        if (CartDetail::where('cart_id', $active_cart->id)->first() == null) {
+            return view('cart', ['cart_detail' => null]);
+        }
+
+        $cart_detail = CartDetail::all()->where('cart_id', $active_cart->id);
+        return view('cart', ['cart_detail' => $cart_detail]);
     }
 
-    public function add_to_cart(Request $req)
+    public function addToCart(Request $req)
     {
         // find cart
         $active_cart = Cart::where('user_id', Auth::user()->id)->where('status', 'not checked out')->first();
@@ -43,19 +48,51 @@ class CartController extends Controller
         return redirect('/cart');
     }
 
-    public function viewActiveCart()
+    public function removeFromCart($id)
     {
-        $active_cart = Cart::where('user_id', Auth::user()->id)->where('status', 'not checked out')->first();
-
-        if (CartDetail::where('cart_id', $active_cart->id)->first() == null) {
-            return view('cart', ['cart_detail' => null]);
-        }
-
-        $cart_detail = CartDetail::all()->where('cart_id', $active_cart->id);
-        return view('cart', ['cart_detail' => $cart_detail]);
+        $cart_detail = CartDetail::find($id);
+        $cart_detail->delete();
+        return redirect('/cart');
     }
 
+    public function editCartPage($id)
+    {
+        $item = Item::find($id);
+        return view('edit_cart', ['item' => $item]);
+    }
 
+    public function editCart(Request $req)
+    {
+        // find cart
+        $active_cart = Cart::where('user_id', Auth::user()->id)->where('status', 'not checked out')->first();
+
+        // kalo udah ada item yang sama, update cart detail
+        if (CartDetail::where('cart_id', $active_cart->id)->where('item_id', $req->item_id)->first()) {
+            $cart_detail = CartDetail::where('cart_id', $active_cart->id)->where('item_id', $req->item_id)->first();
+            $cart_detail->quantity = $req->quantity;
+            $cart_detail->updated_at = Carbon::now();
+            $cart_detail->save();
+        }
+        // kalo belum, insert cart detail baru
+        else {
+            $cart_detail = new CartDetail();
+            $cart_detail->cart_id = $active_cart->id;
+            $cart_detail->item_id = $req->item_id;
+            $cart_detail->quantity = $req->quantity;
+            $cart_detail->created_at = Carbon::now();
+            $cart_detail->save();
+        }
+        return redirect('/cart');
+    }
+
+    public function deleteCart($id)
+    {
+        $cart = Cart::find($id);
+        // delete file local masi ga bisa
+        // Storage::delete('public\storage\images\durian.png');
+        $cart->delete();
+        return redirect('/history');
+    }
 
     // public function checkout()
     // {
@@ -63,5 +100,12 @@ class CartController extends Controller
     // $item = Item::find($req->item_id);
     // $item->stock = $item->stock - $req->quantity;
     // $item->save();
+    // }
+
+    // public function viewTransactionHistory()
+    // {
+    //     $user = User::find('id');
+    //     $cart = Cart::all()->where('id', $user);
+    //     return view('transaction_history', ['cart' => $cart]);
     // }
 }
