@@ -14,8 +14,9 @@
                         <p>{{ $item->description }}</p>
                         @auth
                             @if (Auth::user()->role == 'Member')
-                                <form action="/addToCart/{{ $item->id }}" method="POST" class="flex flex-col">
+                                <form action="/addToCart" method="POST" class="flex flex-col">
                                     @csrf
+                                    <input type="hidden" name="item_id" value="{{ $item->id }}">
                                     <label for="quantity_product" class="font-bold">Quantity:</label>
                                     <div class="flex flex-row justify-between">
                                         <select name="quantity" id="quantity" class="mx-2 border-1 w-[100px]">
@@ -34,7 +35,7 @@
                                     <a href="/delete/{{ $item->id }}">Delete Item</a>
                                 </div>
                             @endif
-                            <a href="/home"
+                            <a href="{{ url()->previous() }}"
                                 class="border-button border-red-500 p-2 rounded  w-[100px] hover:bg-red-500 text-red-500 hover:text-white mt-2">Back
                             </a>
                         @endauth

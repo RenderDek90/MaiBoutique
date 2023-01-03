@@ -44,10 +44,10 @@ Route::get('/delete/{id}', [ItemController::class, 'deleteItem']);
 // search
 Route::get('/search', [ItemController::class, 'searchItem']);
 
-// add item to cart
-Route::post('/addToCart/{id}', [CartController::class, 'add_to_cart']);
 // view active cart
 Route::get('/cart', [CartController::class, 'viewActiveCart']);
+// add item to cart
+Route::post('/addToCart', [CartController::class, 'add_to_cart']);
 
 // profile
 Route::get('/profile', [UserController::class, 'viewProfile']);

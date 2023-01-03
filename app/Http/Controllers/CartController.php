@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\CartDetail;
+use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -18,15 +19,15 @@ class CartController extends Controller
         return view('transaction_history', ['cart' => $cart]);
     }
 
-    public function add_to_cart(Request $req, $id)
+    public function add_to_cart(Request $req)
     {
         // find cart
         $active_cart = Cart::where('user_id', Auth::user()->id)->where('status', 'not checked out')->first();
 
         // kalo udah ada item yang sama, update cart detail
-        if (CartDetail::where('cart_id', $active_cart->id)->where('item_id', $id)->first()) {
-            $cart_detail = CartDetail::where('cart_id', $active_cart->id)->where('item_id', $id)->first();
-            $cart_detail->quantity = $req->quantity;
+        if (CartDetail::where('cart_id', $active_cart->id)->where('item_id', $req->item_id)->first()) {
+            $cart_detail = CartDetail::where('cart_id', $active_cart->id)->where('item_id', $req->item_id)->first();
+            $cart_detail->quantity += $req->quantity;
             $cart_detail->updated_at = Carbon::now();
             $cart_detail->save();
         }
@@ -34,16 +35,11 @@ class CartController extends Controller
         else {
             $cart_detail = new CartDetail();
             $cart_detail->cart_id = $active_cart->id;
-            $cart_detail->item_id = $id;
+            $cart_detail->item_id = $req->item_id;
             $cart_detail->quantity = $req->quantity;
             $cart_detail->created_at = Carbon::now();
             $cart_detail->save();
         }
-
-        $cart = Cart::find('cart_id', $active_cart);
-        $cart->stock = $cart->stock - $req->quantity;
-        $cart->save();
-
         return redirect('/cart');
     }
 
@@ -64,8 +60,8 @@ class CartController extends Controller
     // public function checkout()
     // {
     //     // // update item stock
-    //     // $item = Item::find($id);
-    //     // $item->stock = $item->stock - $req->quantity;
-    //     // $item->save();
+    // $item = Item::find($req->item_id);
+    // $item->stock = $item->stock - $req->quantity;
+    // $item->save();
     // }
 }
