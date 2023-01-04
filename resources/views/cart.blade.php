@@ -41,7 +41,13 @@
                 {{-- <p class="font-bold">Total Price : Rp.200000</p> --}}
             </div>
             <div class="m-10 flex row justify-end">
-                <a href="" class="bg-blue-700 text-white p-2 rounded">Check Out ({{ $total_qty }})</a>
+                @php
+                @endphp
+
+                <form action="/checkout" method="get">
+                @csrf
+                <button class="bg-blue-700 text-white p-2 rounded">Check Out ({{ $total_qty }})</button>
+            </form>
                 {{-- <a href="/checkout" class="bg-blue-700 text-white p-2 rounded">Check Out (4)</a> --}}
             </div>
         @endif

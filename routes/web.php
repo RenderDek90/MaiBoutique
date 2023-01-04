@@ -72,3 +72,5 @@ Route::get('/edit-profile', [UserController::class, 'editProfilePage'])->middlew
 Route::post('/edit-profile', [UserController::class, 'editProfile'])->middleware('member');
 
 Route::get('/history', [CartController::class, 'viewTransactionHistory'])->middleware('member');
+
+Route::get('/checkout', [CartController::class, 'checkout'])->middleware('member');

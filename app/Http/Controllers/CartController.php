@@ -94,13 +94,26 @@ class CartController extends Controller
         return redirect('/history');
     }
 
-    // public function checkout()
-    // {
-    //     // // update item stock
-    // $item = Item::find($req->item_id);
-    // $item->stock = $item->stock - $req->quantity;
-    // $item->save();
-    // }
+    public function checkout()
+    {
+
+        $total_price = 0;
+        $total_qty  = 0;
+        $active_cart = Cart::where('user_id', Auth::user()->id)->where('status', 'not checked out')->first();
+        // $cart_detail = CartDetail::all()->where('cart_id',$active_cart->id);
+        $item = Item::find('item_id');
+        $total_qty += $active_cart->item->quantity;
+        $total_price += $item->price * $active_cart->item->quantity;
+
+        $cart = Cart::find('user_id', Auth::user()->id);
+        $cart->update([
+        'total_price' => $total_price,
+        'status' => 'checked out'
+        ]);
+        $cart->save();
+
+        return redirect('transaction_history')->with('message', 'Checkout Complete!');
+    }
 
     public function viewTransactionHistory()
     {
