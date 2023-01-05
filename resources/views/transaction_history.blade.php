@@ -4,13 +4,12 @@
     <div class="w-full bg-slate-100">
         @auth
             @if ($cart->isEmpty())
-                <div class="flex items-center justify-center font-bold text-slate-400 p-10 text-3xl h-screen w-full">
-                    <div class="flex-cols text-center">
-                    <img src="{{Storage::url('images/sad_icon (2).png')}}" class="h-[150px] w-auto mx-auto m-5">
-                    <h1>Hi {{ Auth::user()->username }}</h1>
+            <p class="text-center text-3xl font-medium pt-10">Check What You've Bought!</p>
+                <div class="flex flex-col text-3xl text-center items-center justify-center text-slate-400 p-10 w-full">
+                    <img src="{{Storage::url('images/sad_icon (2).png')}}" class="h-[150px]">
+                    <h1 class="font-bold pt-5">Hi {{ Auth::user()->username }}</h1>
                     <h1 class="font-medium">Oops!</h1>
-                    <h1 class="font-light">You haven't bought anything</h1>
-                    </div>
+                    <h1 class="font-light text-2xl">You haven't bought anything</h1>
                 </div>
             @else
                 <div class="p-10">

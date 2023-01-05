@@ -3,17 +3,15 @@
 @section('container')
     <div class="w-full bg-slate-100">
         @if ($cart_detail == null)
-            <div class="flex items-center text-center justify-center font-bold text-slate-400 p-10 text-3xl h-screen w-full">
-                <div class="flex-cols text-center">
-                    <img src="{{Storage::url('images/sad_icon (2).png')}}" class="h-[150px] w-auto mx-auto m-5">
-                    <h1>Hi {{ Auth::user()->username }}</h1>
-                    <h1 class="font-medium">Oops!</h1>
-                    <h1 class="font-light">It's empty here!</h1>
-                </div>
+        <p class="text-center text-3xl font-medium pt-10">{{ Auth::user()->username }}'s Cart</p>
+            <div class="flex flex-col text-3xl text-center items-center justify-center text-slate-400 p-10 w-full">
+                <img src="{{Storage::url('images/sad_icon (2).png')}}" class="h-[150px]">
+                <h1 class="font-medium">Oops!</h1>
+                <h1 class="font-light">It's empty here!</h1>
             </div>
         @else
             <p class="text-center text-3xl font-medium p-10">{{ Auth::user()->username }}'s Cart</p>
-            <section class="flex flex-wrap p-10 justify-around">
+            <section class="flex flex-wrap justify-around">
                 @php
                     $total_qty = 0;
                     $total_price = 0;
@@ -35,10 +33,8 @@
                     </div>
                 @endforeach
             </section>
-            <div class="flex row justify-end m-10">
-                <p class="font-bold">Total Price : Rp.{{ $total_price }}</p>
-            </div>
-            <div class="m-10 flex row justify-end">
+            <div class="text-right p-10 gap-5">
+                <p class="font-bold pb-5">Total Price : Rp.{{ $total_price }}</p>
                 <form action="/checkout" method="POST">
                     @csrf
                     <input type="hidden" name="total_price" value="{{ $total_price }}">
