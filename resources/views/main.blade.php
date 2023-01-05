@@ -8,7 +8,7 @@
                 <p class="text-4xl">Welcome to <u>MaiBoutique</u></p>
                 <p>Online Boutique that Provides You with Various Clothes to Suit Your Various Activities</p>
                 <div class="content-center"><a href="/sign-up"
-                        class="py-2 px-4 bg-blue-500 hover:bg-blue-700 rounded w-36">SIGN UP NOW</a></div>
+                class="py-2 px-4 bg-blue-500 hover:bg-blue-700 rounded w-36">SIGN UP NOW</a></div>
             </div>
         </div>
     </section>
