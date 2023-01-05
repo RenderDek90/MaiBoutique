@@ -4,9 +4,11 @@
     <div class="w-full bg-slate-100">
         @if ($cart_detail == null)
             <div class="flex items-center text-center justify-center font-bold text-slate-400 p-10 text-3xl h-screen w-full">
-                <div>
+                <div class="flex-cols text-center">
+                    <img src="{{Storage::url('images/sad_icon (2).png')}}" class="h-[150px] w-auto mx-auto m-5">
                     <h1>Hi {{ Auth::user()->username }}</h1>
-                    <h1>It's empty here!! you need to buy things :)</h1>
+                    <h1 class="font-medium">Oops!</h1>
+                    <h1 class="font-light">It's empty here!</h1>
                 </div>
             </div>
         @else
