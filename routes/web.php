@@ -63,9 +63,7 @@ Route::get('/remove-from-cart/{id}', [CartController::class, 'removeFromCart'])-
 Route::get('/edit-cart/{id}', [CartController::class, 'editCartPage'])->middleware('member');
 Route::post('/edit-cart', [CartController::class, 'editCart'])->middleware('member');
 
-Route::get('/checkout', function () {
-    //view checkout ("Kayak Done Checkout atau gimana")
-})->middleware('member');
+Route::get('/checkout', [CartController::class, 'checkout'])->middleware('member');
 
 // edit profile
 Route::get('/edit-profile', [UserController::class, 'editProfilePage'])->middleware('member');
