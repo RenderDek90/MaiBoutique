@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\CartDetail;
 use App\Models\Item;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -94,31 +93,26 @@ class CartController extends Controller
         return redirect('/history');
     }
 
-    public function checkout()
+    public function checkout(Request $req)
     {
-
-        $total_price = 0;
-        $total_qty  = 0;
         $active_cart = Cart::where('user_id', Auth::user()->id)->where('status', 'not checked out')->first();
-        // $cart_detail = CartDetail::all()->where('cart_id',$active_cart->id);
-        $item = Item::find('item_id');
-        $total_qty += $active_cart->item->quantity;
-        $total_price += $item->price * $active_cart->item->quantity;
+        $active_cart->total_price = $req->total_price;
+        $active_cart->status = 'checked out';
+        $active_cart->updated_at = Carbon::now();
+        $active_cart->save();
 
-        $cart = Cart::find('user_id', Auth::user()->id);
-        $cart->update([
-        'total_price' => $total_price,
-        'status' => 'checked out'
-        ]);
-        $cart->save();
-
-        return redirect('transaction_history')->with('message', 'Checkout Complete!');
+        $cart_detail = CartDetail::all()->where('cart_id', $active_cart->id);
+        foreach ($cart_detail as $cd) {
+            $item = Item::find($cd->item_id);
+            $item->stock -= $cd->quantity;
+            $item->save();
+        }
+        return redirect('/history')->with('message', 'Checkout Complete!');
     }
 
     public function viewTransactionHistory()
     {
-        $user = User::find('id');
-        $cart = Cart::all()->where('id', $user);
+        $cart = Cart::all()->where('user_id', Auth::user()->id);
         return view('transaction_history', ['cart' => $cart]);
     }
 }

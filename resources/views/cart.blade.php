@@ -27,28 +27,22 @@
                             $total_qty += $cd->quantity;
                             $total_price += $cd->item->price * $cd->quantity;
                         @endphp
-
-                        {{-- Edit sama Remove masih bingung --}}
                         <a href="/edit-cart/{{ $cd->item->id }}" class="bg-blue-700 text-white p-2 rounded">Edit Cart</a>
                         <a href="/remove-from-cart/{{ $cd->id }}" class="bg-red-700 text-white p-2 rounded">Remove
-                            from
-                            Cart</a>
+                            from Cart</a>
                     </div>
                 @endforeach
             </section>
             <div class="flex row justify-end m-10">
-                <p class="font-bold">Total Price : Rp.{{ $total_price }},-</p>
-                {{-- <p class="font-bold">Total Price : Rp.200000</p> --}}
+                <p class="font-bold">Total Price : Rp.{{ $total_price }}</p>
             </div>
             <div class="m-10 flex row justify-end">
-                @php
-                @endphp
-
-                <form action="/checkout" method="get">
-                @csrf
-                <button class="bg-blue-700 text-white p-2 rounded">Check Out ({{ $total_qty }})</button>
-            </form>
-                {{-- <a href="/checkout" class="bg-blue-700 text-white p-2 rounded">Check Out (4)</a> --}}
+                <form action="/checkout" method="POST">
+                    @csrf
+                    <input type="hidden" name="total_price" value="{{ $total_price }}">
+                    <button class="bg-blue-700 text-white p-2 rounded" type="submit">Check Out
+                        ({{ $total_qty }})</button>
+                </form>
             </div>
         @endif
     </div>

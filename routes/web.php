@@ -62,13 +62,10 @@ Route::get('/remove-from-cart/{id}', [CartController::class, 'removeFromCart'])-
 // edit cart
 Route::get('/edit-cart/{id}', [CartController::class, 'editCartPage'])->middleware('member');
 Route::post('/edit-cart', [CartController::class, 'editCart'])->middleware('member');
-
-Route::get('/checkout', [CartController::class, 'checkout'])->middleware('member');
-
+// checkout cart
+Route::post('/checkout', [CartController::class, 'checkout'])->middleware('member');
+// transaction history
+Route::get('/history', [CartController::class, 'viewTransactionHistory'])->middleware('member');
 // edit profile
 Route::get('/edit-profile', [UserController::class, 'editProfilePage'])->middleware('member');
 Route::post('/edit-profile', [UserController::class, 'editProfile'])->middleware('member');
-
-Route::get('/history', [CartController::class, 'viewTransactionHistory'])->middleware('member');
-
-Route::get('/checkout', [CartController::class, 'checkout'])->middleware('member');

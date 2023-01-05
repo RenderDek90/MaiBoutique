@@ -71,8 +71,6 @@ class ItemController extends Controller
     public function deleteItem($id)
     {
         $item = Item::find($id);
-        // delete file local masi ga bisa
-        // Storage::delete('public\storage\images\durian.png');
         $item->delete();
         return redirect('/home');
     }
