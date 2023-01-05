@@ -19,11 +19,11 @@
                 @foreach ($cart as $cart)
                     <br>
                     <div>{{ $cart->updated_at->format('d-m-Y') }}</div>
-                    @foreach ($cart->cart_details as $cart_details)
-                        <li>{{ $cart_details->quantity }} pc(s) {{ $cart_details->item->name }}
-                            Rp{{ $cart_details->item->price }}</li>
+                    @foreach ($cart->cart_detail as $cd)
+                        <li>{{ $cd->quantity }} pc(s) {{ $cd->item->name }}
+                            Rp{{ $cd->item->price }}</li>
                     @endforeach
-                    <div>Total Price {{ $cart->price->sum() }}</div>
+                    <div>Total Price {{ $cart->total_price }}</div>
                 @endforeach
             @endif
 

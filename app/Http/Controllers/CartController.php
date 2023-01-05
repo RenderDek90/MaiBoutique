@@ -87,8 +87,6 @@ class CartController extends Controller
     public function deleteCart($id)
     {
         $cart = Cart::find($id);
-        // delete file local masi ga bisa
-        // Storage::delete('public\storage\images\durian.png');
         $cart->delete();
         return redirect('/history');
     }
@@ -105,14 +103,26 @@ class CartController extends Controller
         foreach ($cart_detail as $cd) {
             $item = Item::find($cd->item_id);
             $item->stock -= $cd->quantity;
+            $item->updated_at = Carbon::now();
             $item->save();
         }
+
+        $cart = new Cart();
+        $cart->user_id = Auth::user()->id;
+        $cart->total_price = 0;
+        $cart->status = "not checked out";
+        $cart->created_at = Carbon::now();
+        $cart->save();
+
         return redirect('/history')->with('message', 'Checkout Complete!');
     }
 
     public function viewTransactionHistory()
     {
-        $cart = Cart::all()->where('user_id', Auth::user()->id);
+        $cart = Cart::all()->where('user_id', Auth::user()->id)->where('status', 'checked out');
+        foreach ($cart as $c) {
+            $c->cart_detail = CartDetail::all()->where('cart_id', $c->id);
+        }
         return view('transaction_history', ['cart' => $cart]);
     }
 }

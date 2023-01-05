@@ -142,27 +142,4 @@ class UserController extends Controller
 
         return redirect('/home')->with("Status", "Successfully change data!");
     }
-
-    // public function getData(Request $req)
-    // {
-    //     $validator = Validator::make($req->all(), [
-    //         'email' => 'required|email',
-    //         'password' => 'required'
-    //     ]);
-    //     if ($validator->fails()) {
-    //         return response()->json(['error' => $validator->errors()], 401);
-    //     }
-
-    //     $email = $req->email;
-    //     $password = $req->password;
-    //     // Check kalo yang di masukin itu Admin atau Member atau Guest
-    //     // tapi seinget gua pakai ini
-
-    //     //masi error, coba di cek lagi deh
-    //     if (Auth::attempt(['email' => $email, 'password' => $password])) {
-
-    //         return view('home');
-    //     };
-    //     return redirect('/sign-in');
-    // }
 }
