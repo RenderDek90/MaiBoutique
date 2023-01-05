@@ -41,7 +41,7 @@
                             </div>
                         @elseif (Auth::user()->role == 'Admin')
                             <div
-                                class="bg-red-500 border-0 hover:bg-red-700 text-white border p-2 rounded w-[100%] h-[2.5em] hover:cursor-pointer m-2">
+                                class="bg-red-500 border-0 hover:bg-red-700 text-white border p-2 rounded w-[50%] h-[2.5em] hover:cursor-pointer m-2">
                                 <a href="/delete/{{ $item->id }}">Delete Item</a>
                             </div>
                     @endif
