@@ -12,21 +12,22 @@
                     <p class="font-bold mt-5">Product Detail</p>
                     <p>{{ $item->description }}</p>
                     @if (Auth::user()->role == 'Member')
-                        <form action="/add-to-cart" method="POST" class="flex flex-col">
+                        <form action="/edit-cart" method="POST" class="flex flex-col">
                             @csrf
                             <input type="hidden" name="item_id" value="{{ $item->id }}">
                             <label for="quantity" class="font-bold mt-3">Quantity:</label>
                             <div class="flex flex-row justify-between">
-                                @if ($item->stock - $qty_in_cart > 0)
-                                    <select name="quantity" id="quantity" class="mx-2 border-1 w-[100px]">
-                                        @for ($i = 1; $i <= $item->stock - $qty_in_cart; $i++)
-                                            <option value="{{ $i }}" class="">{{ $i }}
-                                            </option>
-                                        @endfor
-                                    </select>
-                                    <input
-                                        class="bg-green-500 border-0 hover:bg-green-700 text-white border p-2 rounded w-[50%] h-[2.5em] hover:cursor-pointer"
-                                        type="submit" value="Add to Cart">
+                                <select name="quantity" id="quantity" class="mx-2 border-1 w-[100px]">
+                                    @for ($i = 1; $i <= $item->stock; $i++)
+                                        <option value="{{ $i }}" class="">{{ $i }}
+                                        </option>
+                                    @endfor
+                                </select>
+                                <input
+                                    class="bg-green-500 border-0 hover:bg-green-700 text-white border p-2 rounded w-[50%] h-[2.5em] hover:cursor-pointer"
+                                    type="submit" value="Add to Cart">
+
+                                {{-- @if ($item->stock - $qty_in_cart > 0)
                                 @else
                                     <select name="quantity" id="quantity"
                                         class="opacity-50 border-0 mx-2 border-1 w-[100px] select-none pointer-event-none"
@@ -36,7 +37,7 @@
                                     <input
                                         class="bg-slate-400 opacity-50 border-0 text-white border p-2 rounded w-[50%] h-[2.5em]"
                                         type="reset" value="Add to Cart">
-                                @endif
+                                @endif --}}
                             </div>
                         @elseif (Auth::user()->role == 'Admin')
                             <div
@@ -44,12 +45,9 @@
                                 <a href="/delete/{{ $item->id }}">Delete Item</a>
                             </div>
                     @endif
+                    <a class="border p-2 rounded border-red-500 w-[15%] hover:bg-red-500 text-red-500 hover:text-white mt-2 mx-2 text-center"
+                        href={{ url()->previous() }}>Back</a>
                     </form>
-                    <div
-                        class="p-2 border-red-500 rounded w-[20%] hover:bg-red-500 text-red-500 hover:text-white mt-2 mx-2 text-center">
-                        <a href="{{ url()->previous() }}" class="border-button">Back
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
