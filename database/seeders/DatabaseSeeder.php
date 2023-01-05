@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
 
             // Hat
             [
-                'image' => 'hat1.png',
+                'image' => 'hat1.jpg',
                 'name' => 'Cowboy Hat',
                 'description' => 'The cowboy hat is a high-crowned, wide-brimmed hat best known as the defining piece of attire for the North American cowboy.',
                 'price' => 400000,
