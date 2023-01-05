@@ -26,12 +26,9 @@
                                 class="bg-green-500 border-0 hover:bg-green-700 text-white border p-2 rounded w-[50%] h-[2.5em] hover:cursor-pointer"
                                 type="submit" value="Update Cart">
                         </div>
+                        <a class="border p-2 rounded border-red-500 w-[15%] hover:bg-red-500 text-red-500 hover:text-white mt-2 mx-2 text-center"
+                            href={{ url()->previous() }}>Back</a>
                     </form>
-                    <div
-                        class="p-2 border-red-500 rounded w-[20%] hover:bg-red-500 text-red-500 hover:text-white mt-2 mx-2 text-center">
-                        <a href="{{ url()->previous() }}" class="border-button">Back
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
